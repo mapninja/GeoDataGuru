@@ -1,0 +1,20 @@
+{
+  "_help": "Edit this file to change what scripts/harvest_ogm.py collects. repos are folder names in https://github.com/OpenGeoMetadata. Records are written to data/ogm-subset.json.",
+  "repos": [
+    "edu.illinois",
+    "edu.indiana",
+    "edu.msu",
+    "edu.northwestern",
+    "edu.osu",
+    "edu.psu",
+    "edu.rutgers",
+    "edu.uchicago",
+    "edu.uiowa",
+    "edu.umd",
+    "edu.umich",
+    "edu.umn",
+    "edu.unl"
+  ],
+  "per_repo": 16,
+  "fetch_per_repo": 36
+}

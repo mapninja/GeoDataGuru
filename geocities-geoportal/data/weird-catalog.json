@@ -1,0 +1,588 @@
+{
+ "meta": {
+  "schema": 1,
+  "note": "Hand-curated weird and unusual datasets. Add an entry to the datasets list. Run python3 scripts/validate_data.py to check.",
+  "themes": [
+   "Paranormal",
+   "Earth events",
+   "Lost and historic",
+   "Transport and risk",
+   "Nature and sky"
+  ],
+  "spatial": [
+   "points",
+   "geocode",
+   "tracks",
+   "service",
+   "region",
+   "sky"
+  ],
+  "fit": [
+   "csv-layer",
+   "live",
+   "geocode",
+   "link-only",
+   "reference"
+  ],
+  "checked": [
+   "page read",
+   "listed only"
+  ]
+ },
+ "datasets": [
+  {
+   "id": "strange-places",
+   "title": "Strange Places v5.2",
+   "theme": "Paranormal",
+   "spatial": "points",
+   "size": "354,770 records, 14 categories",
+   "license": "Mixed. Card says \"other\", JSON-LD says CC BY 4.0, source table lists Fair Use for BFRO, NUFORC and Shadowlands",
+   "checked": "page read",
+   "fit": "csv-layer",
+   "url": "https://github.com/data-poems/strange-places-dataset",
+   "via": "Your link; awesome-public-datasets lists a copy at github.com/lukeslp/strange-places-dataset",
+   "note": "One file with category, latitude, longitude, name, description and date. Too large to load whole on a Pages site. Split by category first.",
+   "layers": [
+    [
+     "Tornadoes",
+     71813,
+     "NOAA",
+     "Public domain"
+    ],
+    [
+     "Caves",
+     70242,
+     "OpenStreetMap",
+     "ODbL 1.0"
+    ],
+    [
+     "UFO sightings",
+     60632,
+     "NUFORC",
+     "Fair use (per README)"
+    ],
+    [
+     "Megalithic sites",
+     60028,
+     "Megalithic Portal",
+     "Attribution"
+    ],
+    [
+     "Meteorite landings",
+     32186,
+     "NASA",
+     "Public domain"
+    ],
+    [
+     "Ghost towns",
+     18154,
+     "OpenStreetMap",
+     "ODbL 1.0"
+    ],
+    [
+     "Storm events",
+     14770,
+     "NOAA",
+     "Public domain"
+    ],
+    [
+     "Haunted places",
+     9717,
+     "Shadowlands Index",
+     "Fair use (per README)"
+    ],
+    [
+     "Thermal springs",
+     5003,
+     "NOAA",
+     "Public domain"
+    ],
+    [
+     "Bigfoot sightings",
+     3797,
+     "BFRO",
+     "Fair use (per README)"
+    ],
+    [
+     "Earthquakes",
+     3742,
+     "USGS",
+     "Public domain"
+    ],
+    [
+     "Shipwrecks",
+     3653,
+     "NOAA",
+     "Public domain"
+    ],
+    [
+     "Fireballs",
+     863,
+     "NASA",
+     "Public domain"
+    ],
+    [
+     "Volcanoes",
+     170,
+     "USGS",
+     "Public domain"
+    ]
+   ]
+  },
+  {
+   "id": "kaggle-haunted",
+   "title": "Haunted Places in the USA (Kaggle)",
+   "theme": "Paranormal",
+   "spatial": "points",
+   "size": "CSV, 5.38 MB, 10 columns",
+   "license": "Other (specified in description)",
+   "checked": "page read",
+   "fit": "csv-layer",
+   "url": "https://www.kaggle.com/datasets/sujaykapadnis/haunted-places",
+   "via": "Your link",
+   "note": "Compiled by Tim Renner from the Shadowlands Haunted Places Index, shared on data.world. Has latitude, longitude, city, state and a text description. Kaggle download needs a sign-in."
+  },
+  {
+   "id": "kaggle-bigfoot",
+   "title": "Bigfoot Sightings, geocoded (Kaggle)",
+   "theme": "Paranormal",
+   "spatial": "points",
+   "size": "CSV and JSON files, collected 2019, updated 2021",
+   "license": "Unknown license on the Kaggle page",
+   "checked": "page read",
+   "fit": "csv-layer",
+   "url": "https://www.kaggle.com/datasets/thedevastator/unlocking-mysteries-of-bigfoot-through-sightings",
+   "via": "Your link",
+   "note": "BFRO reports with coordinates, classification, date and weather from the Dark Sky API. Source is BFRO, so see the BFRO entry before publishing a copy."
+  },
+  {
+   "id": "bfro-gdb",
+   "title": "BFRO Geographical Database of Sightings",
+   "theme": "Paranormal",
+   "spatial": "points",
+   "size": "Hundreds of reports per state; recent additions through 2026",
+   "license": "Copyright BFRO.net. No open license found",
+   "checked": "page read",
+   "fit": "link-only",
+   "url": "https://www.bfro.net/gdb/",
+   "via": "Your link",
+   "note": "No download or API seen on the page. Ask BFRO before copying report text to a public repository. Link to reports instead."
+  },
+  {
+   "id": "kaggle-ufo-wiki",
+   "title": "UFO Sightings Dataset (Kaggle, from Wikipedia)",
+   "theme": "Paranormal",
+   "spatial": "geocode",
+   "size": "CSV, 28.49 kB, 6 columns",
+   "license": "CC0: Public Domain",
+   "checked": "page read",
+   "fit": "geocode",
+   "url": "https://www.kaggle.com/datasets/ahemateja19bec1025/ufosightingsdataset",
+   "via": "Your link",
+   "note": "Columns are Number, Date, Name, City and State, Country, Description. No coordinates, so geocode city names before mapping. Small, famous events rather than a sighting database."
+  },
+  {
+   "id": "planetsig-ufo",
+   "title": "UFO reports, 80,000+ (planetsig)",
+   "theme": "Paranormal",
+   "spatial": "geocode",
+   "size": "80,000+ reports (per article)",
+   "license": "Not stated",
+   "checked": "listed only",
+   "fit": "geocode",
+   "url": "https://github.com/planetsig/ufo-reports",
+   "via": "Medium: 20 Weird & Wonderful Datasets (2016)",
+   "note": "Not opened. The article calls it a favorite. Check the repo for columns and license before use."
+  },
+  {
+   "id": "meteorites-vs-ufos",
+   "title": "Meteorites vs UFOs Detection Bias",
+   "theme": "Paranormal",
+   "spatial": "points",
+   "size": "1,279 records",
+   "license": "Not stated",
+   "checked": "listed only",
+   "fit": "csv-layer",
+   "url": "https://github.com/lukeslp/meteorites-ufos-detection-bias",
+   "via": "awesome-public-datasets (Social Sciences)",
+   "note": "Not opened. Compares meteorite fall and find reports with UFO reports."
+  },
+  {
+   "id": "nasa-meteorites",
+   "title": "Every recorded meteorite landing on Earth",
+   "theme": "Earth events",
+   "spatial": "points",
+   "size": "About 32,000 records",
+   "license": "Public domain (NASA)",
+   "checked": "page read",
+   "fit": "csv-layer",
+   "url": "https://wierddatacollections.com/datasets/every-meteorite-landing/",
+   "via": "wierddatacollections.com; source is the NASA Open Data Portal (data.nasa.gov)",
+   "note": "The linked page is a visualization. Get the table from the NASA portal."
+  },
+  {
+   "id": "hurdat2",
+   "title": "Atlantic hurricanes since 1851 (HURDAT2)",
+   "theme": "Earth events",
+   "spatial": "tracks",
+   "size": "1,973 storms",
+   "license": "Public domain (NOAA)",
+   "checked": "page read",
+   "fit": "csv-layer",
+   "url": "https://wierddatacollections.com/datasets/atlantic-hurricanes-since-1851/",
+   "via": "wierddatacollections.com",
+   "note": "Storm tracks are paths. Convert to points or GeoJSON lines before loading."
+  },
+  {
+   "id": "usgs-feed",
+   "title": "USGS Earthquake Feed",
+   "theme": "Earth events",
+   "spatial": "service",
+   "size": "Live GeoJSON, updated within a minute",
+   "license": "Public domain (USGS)",
+   "checked": "listed only",
+   "fit": "live",
+   "url": "https://earthquake.usgs.gov/earthquakes/feed/",
+   "via": "wierddatacollections.com",
+   "note": "Good candidate for a live layer. We did not test browser access from a Pages origin."
+  },
+  {
+   "id": "usgs-archive",
+   "title": "USGS Earthquake Archives",
+   "theme": "Earth events",
+   "spatial": "service",
+   "size": "Searchable archive",
+   "license": "Public domain (USGS)",
+   "checked": "listed only",
+   "fit": "live",
+   "url": "http://earthquake.usgs.gov/earthquakes/search/",
+   "via": "awesome-public-datasets (Earth Science)",
+   "note": "Link uses http. Check for the https version."
+  },
+  {
+   "id": "gem-historical",
+   "title": "Historical earthquake catalogue, 1000 to 1903",
+   "theme": "Earth events",
+   "spatial": "points",
+   "size": "Not stated",
+   "license": "Not stated",
+   "checked": "listed only",
+   "fit": "csv-layer",
+   "url": "http://www.globalquakemodel.org/what/seismic-hazard/historical-catalogue/",
+   "via": "rs.io 100+ Interesting Data Sets (2014)",
+   "note": "Link is from 2014 and may have moved. Search the Global Earthquake Model site for the current page."
+  },
+  {
+   "id": "radiance",
+   "title": "Radiance GeoJSON: global light pollution",
+   "theme": "Earth events",
+   "spatial": "points",
+   "size": "Not stated",
+   "license": "Not stated",
+   "checked": "listed only",
+   "fit": "csv-layer",
+   "url": "https://archive.org/details/radiance-geojson-data-2025",
+   "via": "awesome-public-datasets (Earth Science)",
+   "note": "Nighttime light dataset in GeoJSON. Check file size before loading."
+  },
+  {
+   "id": "hotsprings",
+   "title": "HotSpringsFind: US hot springs index",
+   "theme": "Earth events",
+   "spatial": "points",
+   "size": "About 400 researched locations",
+   "license": "Not stated",
+   "checked": "listed only",
+   "fit": "csv-layer",
+   "url": "https://hotspringsfind.com/hot-springs-statistics",
+   "via": "awesome-public-datasets (Earth Science)",
+   "note": "Small and easy to load if the license allows."
+  },
+  {
+   "id": "openwater",
+   "title": "OpenWaterAtlas dive, kite and surf spots",
+   "theme": "Earth events",
+   "spatial": "points",
+   "size": "2,928 named spots",
+   "license": "Not stated",
+   "checked": "listed only",
+   "fit": "csv-layer",
+   "url": "https://openwateratlas.com/en/datasets/",
+   "via": "awesome-public-datasets (Earth Science)",
+   "note": "Named locations with climate and species fields per the list entry."
+  },
+  {
+   "id": "pleiades",
+   "title": "Pleiades: gazetteer of ancient places",
+   "theme": "Lost and historic",
+   "spatial": "points",
+   "size": "Not stated",
+   "license": "Not stated",
+   "checked": "listed only",
+   "fit": "csv-layer",
+   "url": "https://pleiades.stoa.org/",
+   "via": "awesome-public-datasets (GIS)",
+   "note": "Pairs well with BTAA historic map records."
+  },
+  {
+   "id": "rumsey",
+   "title": "David Rumsey Map Collection",
+   "theme": "Lost and historic",
+   "spatial": "region",
+   "size": "About 100,000 historic maps",
+   "license": "Check each map",
+   "checked": "page read",
+   "fit": "link-only",
+   "url": "https://www.davidrumsey.com/",
+   "via": "wierddatacollections.com",
+   "note": "Same subject as the BTAA scanned maps. Link out from results."
+  },
+  {
+   "id": "geonames",
+   "title": "GeoNames Worldwide",
+   "theme": "Lost and historic",
+   "spatial": "points",
+   "size": "Not stated",
+   "license": "Not stated",
+   "checked": "listed only",
+   "fit": "reference",
+   "url": "https://www.geonames.org/",
+   "via": "awesome-public-datasets (GIS)",
+   "note": "Gazetteer. Useful to geocode the UFO place names."
+  },
+  {
+   "id": "slashyear",
+   "title": "SlashYear sourced historical events",
+   "theme": "Lost and historic",
+   "spatial": "region",
+   "size": "Events from 3000 BCE",
+   "license": "Not stated",
+   "checked": "listed only",
+   "fit": "reference",
+   "url": "https://github.com/ctrl-maud/slashyear",
+   "via": "awesome-public-datasets (Natural Language)",
+   "note": "Dated events. Not confirmed to have coordinates."
+  },
+  {
+   "id": "spanish-flu",
+   "title": "Spanish Flu dataset, 1918 to 1920",
+   "theme": "Lost and historic",
+   "spatial": "region",
+   "size": "Not stated",
+   "license": "Not stated",
+   "checked": "listed only",
+   "fit": "reference",
+   "url": "https://www.kaggle.com/datasets/thepodclub/spanish-flu-dataset",
+   "via": "awesome-public-datasets (Healthcare)",
+   "note": "Likely country or city level. Not opened."
+  },
+  {
+   "id": "mids",
+   "title": "Militarized Interstate Disputes (Correlates of War)",
+   "theme": "Lost and historic",
+   "spatial": "region",
+   "size": "200 years of threats and conflicts",
+   "license": "Not stated",
+   "checked": "listed only",
+   "fit": "reference",
+   "url": "http://www.correlatesofwar.org/data-sets/MIDs",
+   "via": "Medium: 20 Weird & Wonderful Datasets (2016)",
+   "note": "Country-level records with action, hostility level and fatalities."
+  },
+  {
+   "id": "plane-crash",
+   "title": "Plane Crash Database since 1920",
+   "theme": "Transport and risk",
+   "spatial": "geocode",
+   "size": "Not stated",
+   "license": "Not stated",
+   "checked": "listed only",
+   "fit": "link-only",
+   "url": "http://www.planecrashinfo.com/database.htm",
+   "via": "awesome-public-datasets (Transportation)",
+   "note": "Website database. Check terms before scraping."
+  },
+  {
+   "id": "plane-crash-hf",
+   "title": "PlaneCrashData (Hugging Face)",
+   "theme": "Transport and risk",
+   "spatial": "geocode",
+   "size": "Aviation accidents, 1918 to present",
+   "license": "Not stated",
+   "checked": "listed only",
+   "fit": "geocode",
+   "url": "https://huggingface.co/datasets/MauroPello/planecrashdata",
+   "via": "awesome-public-datasets (Transportation)",
+   "note": "Not opened. Check for coordinates."
+  },
+  {
+   "id": "wildlife-strikes",
+   "title": "FAA wildlife strikes on civil aircraft, 1990 to 2026",
+   "theme": "Transport and risk",
+   "spatial": "region",
+   "size": "Aggregated",
+   "license": "CC BY 4.0 (per list entry)",
+   "checked": "listed only",
+   "fit": "reference",
+   "url": "https://doi.org/10.5281/zenodo.21347859",
+   "via": "awesome-public-datasets (Transportation)",
+   "note": "Aggregated version. Birds versus planes."
+  },
+  {
+   "id": "machine-record",
+   "title": "The Machine Record: commercial robot incidents",
+   "theme": "Transport and risk",
+   "spatial": "geocode",
+   "size": "Public register",
+   "license": "Not stated",
+   "checked": "listed only",
+   "fit": "geocode",
+   "url": "https://github.com/vzolot/machine-record-data",
+   "via": "awesome-public-datasets (Transportation)",
+   "note": "Not opened."
+  },
+  {
+   "id": "fra-safety",
+   "title": "FRA railroad safety data, including highway-rail crossings",
+   "theme": "Transport and risk",
+   "spatial": "points",
+   "size": "Not stated",
+   "license": "Not stated",
+   "checked": "listed only",
+   "fit": "csv-layer",
+   "url": "http://safetydata.fra.dot.gov/officeofsafety/default.aspx",
+   "via": "rs.io 100+ Interesting Data Sets (2014)",
+   "note": "2014 link may have moved. The article suggests mapping crossing incidents."
+  },
+  {
+   "id": "trains",
+   "title": "World Train Routes (TrainRouter Atlas)",
+   "theme": "Transport and risk",
+   "spatial": "tracks",
+   "size": "744 notable routes",
+   "license": "Not stated",
+   "checked": "listed only",
+   "fit": "csv-layer",
+   "url": "https://github.com/Flightmussy/trainrouter-atlas",
+   "via": "awesome-public-datasets (Transportation)",
+   "note": "Not opened."
+  },
+  {
+   "id": "ourairports",
+   "title": "Our Airports",
+   "theme": "Transport and risk",
+   "spatial": "points",
+   "size": "Every airport, heliport and seaplane base, single CSV",
+   "license": "Not stated here",
+   "checked": "page read",
+   "fit": "csv-layer",
+   "url": "https://ourairports.com/data/",
+   "via": "wierddatacollections.com",
+   "note": "Hand-maintained."
+  },
+  {
+   "id": "openflights",
+   "title": "OpenFlights airports, airlines and routes",
+   "theme": "Transport and risk",
+   "spatial": "points",
+   "size": "Not stated",
+   "license": "Not stated",
+   "checked": "listed only",
+   "fit": "csv-layer",
+   "url": "https://openflights.org/data.php",
+   "via": "awesome-public-datasets (Transportation)",
+   "note": "Routes can draw as lines."
+  },
+  {
+   "id": "flock",
+   "title": "Flock Locations: community map of license plate cameras",
+   "theme": "Transport and risk",
+   "spatial": "points",
+   "size": "Not stated",
+   "license": "Not stated",
+   "checked": "listed only",
+   "fit": "link-only",
+   "url": "https://flocklocations.com/press",
+   "via": "awesome-public-datasets (GIS)",
+   "note": "Crowdsourced locations of surveillance equipment. Review the source terms and any privacy concerns before reuse."
+  },
+  {
+   "id": "afrpoweros",
+   "title": "AfrPowerOS: civilian nuclear and energy infrastructure",
+   "theme": "Transport and risk",
+   "spatial": "points",
+   "size": "Not stated",
+   "license": "Not stated",
+   "checked": "listed only",
+   "fit": "csv-layer",
+   "url": "https://github.com/kawacukennedy/afrpoweros",
+   "via": "awesome-public-datasets (Energy)",
+   "note": "Not opened."
+  },
+  {
+   "id": "oga",
+   "title": "Oil and Gas Authority open data (UK)",
+   "theme": "Transport and risk",
+   "spatial": "service",
+   "size": "12,500 offshore wellbores, 5,000 seismic surveys (per list entry)",
+   "license": "Not stated",
+   "checked": "listed only",
+   "fit": "live",
+   "url": "https://data-ogauthority.opendata.arcgis.com/",
+   "via": "awesome-public-datasets (Earth Science)",
+   "note": "ArcGIS Hub site. Most ArcGIS services can be read from a browser."
+  },
+  {
+   "id": "gbif",
+   "title": "GBIF species occurrences",
+   "theme": "Nature and sky",
+   "spatial": "service",
+   "size": "2.6 billion records (per page)",
+   "license": "Varies by dataset",
+   "checked": "page read",
+   "fit": "live",
+   "url": "https://www.gbif.org/",
+   "via": "wierddatacollections.com",
+   "note": "Has a public API. We did not test browser access. Good for a \"sightings of frogs\" style layer."
+  },
+  {
+   "id": "exoplanets",
+   "title": "NASA Exoplanet Archive",
+   "theme": "Nature and sky",
+   "spatial": "sky",
+   "size": "Not stated",
+   "license": "Not stated",
+   "checked": "listed only",
+   "fit": "reference",
+   "url": "http://exoplanetarchive.ipac.caltech.edu/",
+   "via": "awesome-public-datasets (Physics); rs.io",
+   "note": "Sky positions, not map coordinates. Listed by two of your sources."
+  },
+  {
+   "id": "water-hardness",
+   "title": "US water hardness by city",
+   "theme": "Nature and sky",
+   "spatial": "geocode",
+   "size": "16,561 US cities",
+   "license": "Not stated",
+   "checked": "listed only",
+   "fit": "geocode",
+   "url": "https://www.tapwaterdata.com/water-hardness",
+   "via": "awesome-public-datasets (Earth Science)",
+   "note": "City names only. Join to GeoNames for coordinates."
+  },
+  {
+   "id": "gdelt",
+   "title": "GDELT: geotagged world news",
+   "theme": "Nature and sky",
+   "spatial": "points",
+   "size": "Updated every 15 minutes",
+   "license": "Not stated on the page",
+   "checked": "page read",
+   "fit": "live",
+   "url": "https://www.gdeltproject.org/",
+   "via": "wierddatacollections.com",
+   "note": "Large. Use the query services rather than raw files."
+  }
+ ]
+}

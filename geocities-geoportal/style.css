@@ -1,0 +1,266 @@
+/* ==========================================================
+   GeoCities-style theme.
+   Design notes for learners:
+   - Colors are stored as CSS variables on :root so one edit changes the whole page.
+   - Buttons use "outset" borders to fake the 1990s beveled look.
+   - Animations are switched off for people who ask their system for reduced motion.
+   ========================================================== */
+
+:root {
+  --bg: #000022;          /* page background (night sky) */
+  --text: #ffff99;        /* page text */
+  --link: #33ccff;        /* unvisited links */
+  --vlink: #ff77ff;       /* visited links */
+  --panel: #ffffcc;       /* card and panel background */
+  --panel-text: #000000;  /* text on panels (black on pale yellow, high contrast) */
+  --bevel: #c0c0c0;       /* button gray */
+  --accent: #ff00ff;      /* magenta accents */
+  --lime: #66ff66;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0 auto;
+  padding: 8px 16px 24px;
+  max-width: 1200px;
+  color: var(--text);
+  background-color: var(--bg);
+  /* Tiled star field made from four tiny radial gradients. No image files needed. */
+  background-image:
+    radial-gradient(1px 1px at 20px 30px, #fff, transparent),
+    radial-gradient(1px 1px at 90px 120px, #fff, transparent),
+    radial-gradient(2px 2px at 160px 60px, #ff0, transparent),
+    radial-gradient(1px 1px at 60px 180px, #0ff, transparent);
+  background-size: 200px 200px;
+  font-family: "Comic Sans MS", "Comic Sans", "Chalkboard SE", "Comic Neue", cursive, sans-serif;
+  line-height: 1.4;
+}
+
+a { color: var(--link); }
+a:visited { color: var(--vlink); }
+a:hover { background: var(--accent); color: #fff; }
+
+/* Visible keyboard focus everywhere. */
+:focus-visible { outline: 3px solid #ffff00; outline-offset: 2px; }
+
+.skip { position: absolute; left: -999px; }
+.skip:focus { left: 8px; top: 8px; background: #fff; color: #000; padding: 4px 8px; z-index: 9999; }
+
+.small { font-size: 0.85rem; margin: 4px 0; }
+
+/* ---------- Header ---------- */
+.top { text-align: center; }
+
+.rainbow {
+  margin: 8px 0 0;
+  font-size: clamp(1.6rem, 5vw, 3rem);
+  color: #ff66ff; /* fallback if gradient text is not supported */
+  background: linear-gradient(90deg, #ff0000, #ff9900, #ffff00, #33ff33, #00ccff, #6666ff, #ff00ff, #ff0000);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: slide 6s linear infinite;
+}
+@keyframes slide { to { background-position: 200% 0; } }
+
+.tag { margin: 4px 0 8px; }
+
+.construction {
+  display: inline-flex;
+  gap: 16px;
+  align-items: center;
+  padding: 4px 16px;
+  color: #000;
+  font-weight: bold;
+  /* Yellow and black hazard stripes. */
+  background: repeating-linear-gradient(45deg, #ffdd00 0 14px, #222 14px 28px);
+  border: 3px outset #ffdd00;
+}
+.construction span { background: #ffdd00; padding: 0 6px; }
+.new { color: #d00000; animation: blink 1s steps(2, start) infinite; }
+@keyframes blink { 50% { visibility: hidden; } }
+
+.marquee {
+  overflow: hidden;
+  white-space: nowrap;
+  margin: 10px 0;
+  border-top: 2px dashed var(--lime);
+  border-bottom: 2px dashed var(--lime);
+  color: var(--lime);
+}
+.marquee span { display: inline-block; padding-left: 100%; animation: scroll 28s linear infinite; }
+@keyframes scroll { to { transform: translateX(-100%); } }
+
+/* ---------- Panels, forms, buttons ---------- */
+.panel {
+  background: var(--panel);
+  color: var(--panel-text);
+  border: 4px ridge #ff9900;
+  padding: 8px 12px;
+  margin-bottom: 12px;
+}
+.panel h2 { margin: 0 0 6px; font-size: 1.1rem; color: #800080; }
+.panel a { color: #0000cc; }
+.panel a:visited { color: #660099; }
+
+.searchbar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.searchbar input[type="search"] { flex: 1 1 220px; min-width: 0; }
+
+input, select {
+  font: inherit;
+  padding: 4px 6px;
+  border: 3px inset #999;
+  background: #fff;
+  color: #000;
+}
+
+.btn, .linkbtn {
+  font: inherit;
+  cursor: pointer;
+}
+.btn {
+  padding: 4px 12px;
+  color: #000;
+  background: var(--bevel);
+  border: 3px outset #eee;
+}
+.btn:active { border-style: inset; }
+.btn[disabled] { color: #555; cursor: not-allowed; }
+.filebtn { display: inline-block; }
+.btnrow { margin: 6px 0; display: flex; flex-wrap: wrap; gap: 6px; }
+
+/* Buttons that look like links (quick links, facet values). */
+.linkbtn {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--link);
+  text-decoration: underline;
+}
+.panel .linkbtn { color: #0000cc; text-align: left; }
+.linkbtn:hover { background: var(--accent); color: #fff; }
+
+.quick { margin: 4px 0; }
+.status { margin: 4px 0; color: var(--lime); min-height: 1.4em; }
+.status.error { color: #ff9999; font-weight: bold; }
+.budget { margin: 0 0 8px; font-size: 0.85rem; }
+
+/* ---------- Layout ---------- */
+.layout { display: grid; grid-template-columns: 280px 1fr; gap: 16px; align-items: start; }
+@media (max-width: 800px) { .layout { grid-template-columns: 1fr; } }
+
+#map {
+  height: 380px;
+  border: 5px ridge #66ccff;
+  background: #223;
+}
+.mapnote { margin-bottom: 12px; }
+
+.count { color: #ff99ff; margin: 8px 0; }
+
+/* ---------- Facets ---------- */
+.facet h3 { margin: 10px 0 2px; font-size: 0.95rem; color: #006600; }
+.facet ul { list-style: none; margin: 0; padding: 0; }
+.facet li { font-size: 0.9rem; }
+.num { color: #555; }
+.active { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 6px; }
+.chip { border: 2px outset #ccc; background: #ffcc66; padding: 0 6px; font-size: 0.85rem; cursor: pointer; font: inherit; color: #000; }
+
+.layers { list-style: none; padding: 0; margin: 6px 0 0; font-size: 0.9rem; }
+.layers li { display: flex; justify-content: space-between; gap: 6px; margin: 2px 0; }
+
+/* ---------- Results ---------- */
+.results { list-style: none; margin: 0; padding: 0; }
+.card {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 12px;
+  background: var(--panel);
+  color: var(--panel-text);
+  border: 4px outset #c0c0c0;
+  padding: 8px;
+  margin-bottom: 12px;
+}
+.card.hot { border-color: #ff00ff; }
+.card img { width: 110px; height: 110px; object-fit: cover; border: 2px inset #999; background: #ddd; }
+.card h3 { margin: 0 0 2px; font-size: 1.05rem; }
+.card a { color: #0000cc; }
+.card a:visited { color: #660099; }
+.card .meta { font-size: 0.85rem; color: #333; margin: 0 0 4px; }
+.card .desc { margin: 4px 0; font-size: 0.9rem; }
+.card .access { display: flex; flex-wrap: wrap; gap: 6px 14px; margin: 6px 0; font-size: 0.9rem; }
+.badge { background: #99ff99; border: 1px solid #060; padding: 0 6px; font-size: 0.8rem; }
+.badge.restricted { background: #ffaaaa; border-color: #800; }
+.card details { font-size: 0.85rem; }
+@media (max-width: 520px) { .card { grid-template-columns: 1fr; } }
+
+.pager { display: flex; gap: 12px; align-items: center; justify-content: center; margin: 12px 0; }
+
+/* ---------- Weird data shelf ---------- */
+.shelf { margin-top: 24px; }
+.shelfbar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 10px; }
+.shelflist { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 12px; }
+.shelfcard { display: block; margin-bottom: 0; background: #fff; }
+.shelfcard ul { margin: 4px 0 0; padding-left: 18px; }
+
+/* ---------- Footer ---------- */
+.foot { text-align: center; margin-top: 24px; }
+.rainbow-rule { border: 0; height: 6px; background: linear-gradient(90deg, red, orange, yellow, lime, cyan, blue, magenta); }
+.odometer {
+  display: inline-block;
+  padding: 0 6px;
+  font-family: "Courier New", monospace;
+  color: #00ff00;
+  background: #000;
+  border: 3px inset #888;
+  letter-spacing: 2px;
+}
+
+/* ---------- Animated GIFs ---------- */
+/* Title row: a globe on each side of the title. */
+.titlebar { display: flex; align-items: center; justify-content: center; gap: 12px; }
+.titlebar img { display: block; max-width: 20vw; height: auto; }
+.titlebar .flip { transform: scaleX(-1); }   /* mirror the right globe so they face each other */
+.titlebar .rainbow { margin: 0; }
+
+.construction img { display: block; height: 40px; width: auto; image-rendering: pixelated; }
+
+/* Starry strip with satellites. The GIF is 480 px wide and tiles left to right. */
+.divider {
+  height: 24px;
+  margin: 8px 0;
+  background: url("assets/divider.gif") repeat-x center;
+  image-rendering: pixelated;
+}
+
+/* A heading with a small animation beside it. */
+.withicon { display: flex; align-items: center; gap: 8px; }
+.withicon img { display: block; image-rendering: pixelated; }
+.foot img.inline { vertical-align: middle; }
+
+/* Cards without a preview image use one column. */
+.card.nothumb { grid-template-columns: 1fr; }
+
+/* Source menu row and the "add a dataset" helper. */
+.searchbar select { max-width: 100%; }
+.addbox { margin-top: 16px; }
+.addbox summary { cursor: pointer; font-weight: bold; color: #800080; }
+.addform { display: grid; grid-template-columns: 9em 1fr; gap: 6px 10px; align-items: center; margin: 8px 0; }
+.addform textarea, .addform input, .addform select { width: 100%; }
+.addform .btnrow { grid-column: 2; }
+.addout { width: 100%; font-family: "Courier New", monospace; font-size: 0.85rem; background: #fff; color: #000; border: 3px inset #999; }
+@media (max-width: 520px) { .addform { grid-template-columns: 1fr; } .addform .btnrow { grid-column: 1; } }
+
+/* Leaflet popups inherit the page font, so reset their color. */
+.leaflet-popup-content { color: #000; font-family: inherit; }
+
+/* Respect reduced-motion settings: stop all animation. */
+@media (prefers-reduced-motion: reduce) {
+  /* The <picture> tags in the HTML swap GIFs for stills. The divider is a CSS background, so swap it here. */
+  .divider { background-image: url("assets/divider.png"); }
+  .rainbow, .new, .marquee span { animation: none; }
+  .marquee span { padding-left: 0; white-space: normal; }
+  .marquee { white-space: normal; }
+}

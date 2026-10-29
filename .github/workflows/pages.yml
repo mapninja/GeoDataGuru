@@ -1,0 +1,61 @@
+# Deploys the geocities-geoportal folder to GitHub Pages.
+#
+# When it runs:
+#   - on every push to main that changes the portal folder (for example, a new dataset in the JSON)
+#   - when you click "Run workflow" in the Actions tab
+#   - when the harvest workflow finishes a refresh
+#
+# One-time setup: repository Settings > Pages > Build and deployment > Source: GitHub Actions.
+#
+# The action versions below (checkout v4, setup-python v5, configure-pages v5,
+# upload-pages-artifact v3, deploy-pages v4) were not checked against current releases.
+# If a run fails on a version, bump it.
+name: Deploy portal to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'geocities-geoportal/**'
+      - '.github/workflows/pages.yml'
+  workflow_dispatch:
+
+# Pages needs these three permissions.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# If two deploys start together, let the newer one win.
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    # Stops the deploy if a data file has a typo.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check the JSON data files
+        run: python3 geocities-geoportal/scripts/validate_data.py
+      - name: Test the harvester
+        run: python3 geocities-geoportal/scripts/test_harvest.py
+
+  deploy:
+    needs: validate
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: geocities-geoportal   # only this folder is published
+      - id: deployment
+        uses: actions/deploy-pages@v4

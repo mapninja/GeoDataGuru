@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Spatial Data Portal (BTAA API Prototype)</title>
+  <meta name="description" content="Prototype spatial data portal. Static page on GitHub Pages. Searches an OpenGeoMetadata snapshot, a weird data catalog and the live BTAA Geospatial API.">
+
+  <!-- Leaflet draws the map. Version is pinned so the page does not change under us. -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<a class="skip" href="#results">Skip to results</a>
+
+<!-- ===== Header =====
+     Each animated GIF sits in a <picture>. Visitors whose system asks for reduced motion
+     get the still PNG instead. The images are decoration, so alt is empty. -->
+<header class="top">
+  <div class="titlebar">
+    <picture>
+      <source media="(prefers-reduced-motion: reduce)" srcset="assets/globe.png">
+      <img src="assets/globe.gif" alt="" width="96" height="96">
+    </picture>
+    <h1 class="rainbow">~*~ SPATIAL DATA PORTAL ~*~</h1>
+    <picture>
+      <source media="(prefers-reduced-motion: reduce)" srcset="assets/globe.png">
+      <img src="assets/globe.gif" alt="" width="96" height="96" class="flip">
+    </picture>
+  </div>
+  <p class="tag">Search library map data, a weird data shelf and the Big Ten Academic Alliance Geoportal from a static page.</p>
+  <div class="construction" role="note">
+    <picture>
+      <source media="(prefers-reduced-motion: reduce)" srcset="assets/orbit.png">
+      <img src="assets/orbit.gif" alt="" width="64" height="40">
+    </picture>
+    <span>UNDER CONSTRUCTION</span>
+    <span class="new">NEW!</span>
+    <span>Prototype</span>
+    <picture>
+      <source media="(prefers-reduced-motion: reduce)" srcset="assets/orbit.png">
+      <img src="assets/orbit.gif" alt="" width="64" height="40">
+    </picture>
+  </div>
+  <div class="divider" aria-hidden="true"></div>
+  <div class="marquee" aria-hidden="true">
+    <span>Local search covers a snapshot of OpenGeoMetadata records and the weird data shelf, with no rate limit. Live search uses the BTAA Geospatial API, which allows 10 requests per minute. Check each record for access terms.</span>
+  </div>
+</header>
+
+<!-- ===== Search bar ===== -->
+<form id="searchForm" class="panel searchbar" role="search">
+  <label for="q">Search:</label>
+  <input id="q" name="q" type="search" placeholder="chicago, flood, soil, bigfoot" autocomplete="off">
+  <label for="srcSel">In:</label>
+  <select id="srcSel">
+    <option value="local">Local snapshot and weird shelf</option>
+    <option value="live">Live BTAA API</option>
+  </select>
+  <label for="sortSel">Sort:</label>
+  <select id="sortSel">
+    <option value="relevance">Relevance</option>
+    <option value="year_desc">Year (newest first)</option>
+    <option value="year_asc">Year (oldest first)</option>
+    <option value="title_asc">Title (A-Z)</option>
+    <option value="title_desc">Title (Z-A)</option>
+  </select>
+  <button type="submit" class="btn">Go!</button>
+  <button type="button" id="liveBtn" class="btn" title="Runs the same search against the live API. Uses 1 of 8 calls per minute.">Search live API too</button>
+</form>
+
+<p class="quick">
+  Quick links:
+  <button type="button" class="linkbtn" data-q="chicago" data-class="Maps">Chicago maps</button> |
+  <button type="button" class="linkbtn" data-q="flood" data-class="Datasets">Flood datasets</button> |
+  <button type="button" class="linkbtn" data-q="soil">Soil</button> |
+  <button type="button" class="linkbtn" data-q="" data-class="Imagery">All imagery</button> |
+  <button type="button" class="linkbtn" data-q="" data-class="Weird data" data-src="local">Weird data</button> |
+  <button type="button" class="linkbtn" data-q="ufo" data-src="local">UFOs</button> |
+  <button type="button" class="linkbtn" data-q="earthquake" data-src="local">Earthquakes</button>
+</p>
+
+<!-- Screen readers hear status changes here. -->
+<p id="status" class="status" role="status" aria-live="polite">Loading the data files...</p>
+<p id="budget" class="budget" hidden>API calls used this minute: 0 of 8</p>
+
+<div class="layout">
+
+  <!-- ===== Left column: filters and tools ===== -->
+  <aside class="side">
+    <section class="panel">
+      <h2 class="withicon">
+        <picture>
+          <source media="(prefers-reduced-motion: reduce)" srcset="assets/radar.png">
+          <img src="assets/radar.gif" alt="" width="40" height="40">
+        </picture>
+        Search by place
+      </h2>
+      <p class="small">Pan the map, then search for records near the map center. Works in both sources.</p>
+      <label for="radiusSel">Radius:</label>
+      <select id="radiusSel">
+        <option value="10">10 km</option>
+        <option value="50" selected>50 km</option>
+        <option value="250">250 km</option>
+        <option value="1000">1,000 km</option>
+      </select>
+      <div class="btnrow">
+        <button type="button" id="nearBtn" class="btn">Search near center</button>
+        <button type="button" id="clearNear" class="btn" hidden>Clear place</button>
+      </div>
+      <div class="btnrow">
+        <button type="button" id="hexBtn" class="btn">Show density in view</button>
+        <button type="button" id="hexClear" class="btn" hidden>Hide density</button>
+      </div>
+      <p class="small">Local mode counts the records in the data files. Live mode uses 1 API call for each button.</p>
+    </section>
+
+    <section class="panel">
+      <h2>Filters</h2>
+      <div id="active" class="active"></div>
+      <div id="facets"><p class="small">Filters appear after a search.</p></div>
+    </section>
+
+    <section class="panel">
+      <h2>Extra layers (CSV)</h2>
+      <p class="small">
+        Load a CSV with latitude and longitude columns. Runs in your browser. Nothing is uploaded.
+        See the report for the Bigfoot, haunted places and UFO files.
+      </p>
+      <label for="csvInput" class="btn filebtn">Choose CSV</label>
+      <input id="csvInput" type="file" accept=".csv,text/csv" hidden>
+      <ul id="layerList" class="layers"></ul>
+    </section>
+  </aside>
+
+  <!-- ===== Right column: map and results ===== -->
+  <main class="main">
+    <div id="map" role="application" aria-label="Map of result footprints"></div>
+    <p class="small mapnote">Boxes on the map are the bounding box of each result on the current page. Weird shelf entries have no box.</p>
+
+    <h2 id="countHead" class="count">Results</h2>
+    <ol id="results" class="results" tabindex="-1"></ol>
+    <nav id="pager" class="pager" aria-label="Result pages"></nav>
+  </main>
+</div>
+
+<div class="divider" aria-hidden="true"></div>
+
+<!-- ===== Weird data shelf: curated catalog, no API calls ===== -->
+<section class="panel shelf" aria-labelledby="shelfHead">
+  <h2 id="shelfHead" class="withicon">
+    <picture>
+      <source media="(prefers-reduced-motion: reduce)" srcset="assets/orbit.png">
+      <img src="assets/orbit.gif" alt="" width="96" height="60">
+    </picture>
+    Weird data shelf
+  </h2>
+  <p class="small">
+    A hand-picked list of odd or unusual datasets. It is loaded from data/weird-catalog.json,
+    so browsing it uses no API calls, and the same entries appear in local search.
+    Check each license before copying data into a public repository.
+  </p>
+  <div class="shelfbar">
+    <label for="themeSel">Theme:</label>
+    <select id="themeSel"><option value="">All</option></select>
+    <label for="fitSel">Use in portal:</label>
+    <select id="fitSel">
+      <option value="">Any</option>
+      <option value="csv-layer">Load as CSV layer</option>
+      <option value="live">Live service</option>
+      <option value="geocode">Needs geocoding</option>
+      <option value="link-only">Link only</option>
+      <option value="reference">Background reference</option>
+    </select>
+    <span id="shelfCount" class="small"></span>
+  </div>
+  <ul id="shelf" class="shelflist"></ul>
+
+  <!-- Helper that prints a JSON entry to paste into data/weird-catalog.json. It saves nothing. -->
+  <details class="addbox">
+    <summary>Add a dataset to the shelf</summary>
+    <p class="small">
+      Fill in the form, copy the result, and paste it into the "datasets" list in data/weird-catalog.json.
+      Commit the file and GitHub Pages republishes. Nothing is saved from this page.
+    </p>
+    <form id="addForm" class="addform">
+      <label for="addTitle">Title</label>
+      <input id="addTitle" name="title" type="text" required>
+      <label for="addUrl">Web address</label>
+      <input id="addUrl" name="url" type="url" placeholder="https://" required>
+      <label for="addTheme">Theme</label>
+      <select id="addTheme" name="theme"></select>
+      <label for="addSpatial">Location type</label>
+      <select id="addSpatial" name="spatial"></select>
+      <label for="addFit">Use in portal</label>
+      <select id="addFit" name="fit"></select>
+      <label for="addChecked">Checked</label>
+      <select id="addChecked" name="checked"></select>
+      <label for="addSize">Size</label>
+      <input id="addSize" name="size" type="text" placeholder="12,000 records">
+      <label for="addLicense">License</label>
+      <input id="addLicense" name="license" type="text" placeholder="CC BY 4.0">
+      <label for="addVia">Found via</label>
+      <input id="addVia" name="via" type="text">
+      <label for="addNote">Note</label>
+      <textarea id="addNote" name="note" rows="3"></textarea>
+      <div class="btnrow">
+        <button type="submit" class="btn">Make JSON</button>
+        <button type="button" id="addCopy" class="btn" hidden>Copy</button>
+      </div>
+    </form>
+    <label for="addOut" class="small">JSON entry</label>
+    <textarea id="addOut" class="addout" rows="10" readonly></textarea>
+  </details>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer class="foot">
+  <div class="divider" aria-hidden="true"></div>
+  <hr class="rainbow-rule">
+  <p>
+    <picture>
+      <source media="(prefers-reduced-motion: reduce)" srcset="assets/globe.png">
+      <img src="assets/globe.gif" alt="" width="48" height="48" class="inline">
+    </picture>
+    You are visitor number <span id="counter" class="odometer">000001</span> (counted in this browser only)
+  </p>
+  <p class="ring">
+    <a href="https://opengeometadata.org/" rel="noopener">&lt;&lt; Prev</a> |
+    <a href="https://geo.btaa.org/" rel="noopener">BTAA Geoportal Web Ring</a> |
+    <a href="https://github.com/geobtaa/api" rel="noopener">Next &gt;&gt;</a>
+  </p>
+  <p class="small">Best viewed at 800 x 600 or larger. Map tiles &copy; OpenStreetMap contributors. Records &copy; their source institutions.</p>
+</footer>
+
+<noscript><p class="panel">This page needs JavaScript to search.</p></noscript>
+
+<!-- Libraries. Versions are pinned. h3-js draws density hexagons. PapaParse reads CSV. -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/h3-js@4.1.0/dist/h3-js.umd.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
