@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Tests for harvest_ogm.py. Run from the geocities-geoportal folder:
+Tests for harvest_ogm.py. Run from the repository root:
 
     python3 scripts/test_harvest.py
 

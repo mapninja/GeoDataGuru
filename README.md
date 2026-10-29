@@ -21,30 +21,91 @@ Local search runs in the browser and uses no API calls. See `REPORT.md` for the 
 | `scripts/validate_data.py` | Checks both JSON files. |
 | `scripts/test_harvest.py` | Tests for the harvester. |
 | `scripts/make_gifs.py` | Redraws the GIFs. |
-| `../.github/workflows/` | `pages.yml` deploys the site. `harvest.yml` refreshes the snapshot monthly. |
+| `.github/workflows/` | `check.yml` validates the data on every push. `harvest.yml` refreshes the snapshot monthly. |
+| `.nojekyll` | Empty file. Tells GitHub Pages to serve the files as they are. |
 
 ## Run it on your computer
 
 The page loads JSON files, so it needs a web server. Opening `index.html` as a file will not work.
 
 ```
-cd geocities-geoportal
 python3 -m http.server 4173
 ```
 
-Open http://localhost:4173.
+Run the command from the repository root. Open http://localhost:4173.
 
 ## Deploy to GitHub Pages
 
-One time:
+The site files live at the top level of the repository, so Pages publishes straight from `main`. There is no build step. This repository is `mapninja/GeoDataGuru`, so the live address will be:
 
-1. Push the repository to GitHub.
-2. Go to Settings > Pages. Under Build and deployment, set Source to **GitHub Actions**.
-3. Push to `main`. The `pages.yml` workflow checks the data, then publishes the `geocities-geoportal` folder.
+**https://mapninja.github.io/GeoDataGuru/**
 
-After that, every push to `main` that touches the folder redeploys. The workflow fails before publishing if a data file is invalid.
+### Step by step (first time)
 
-The action versions in the workflows were not checked against current releases. If a run fails on a version, bump it.
+1. **Test locally.** From the repository root, run:
+
+   ```
+   python3 scripts/validate_data.py
+   python3 -m http.server 4173
+   ```
+
+   The first command should print `OK`. Open http://localhost:4173 and confirm the page loads, shows results and the globes animate. Stop the server with Ctrl+C.
+
+2. **Commit everything.** The site files moved from the `geocities-geoportal/` folder to the top level, so Git will show the old paths as deleted and the new paths as added. That is expected.
+
+   ```
+   git add -A
+   git status
+   git commit -m "Move portal to repo root for GitHub Pages"
+   ```
+
+   `git status` should list `index.html`, `app.js`, `style.css`, `data/`, `assets/`, `scripts/`, `.nojekyll` and `.github/workflows/`.
+
+3. **Push to GitHub.**
+
+   ```
+   git push origin main
+   ```
+
+4. **Turn on Pages.** In your browser:
+   1. Open https://github.com/mapninja/GeoDataGuru.
+   2. Click **Settings** (top row of tabs).
+   3. In the left sidebar, click **Pages**.
+   4. Under **Build and deployment**, set **Source** to **Deploy from a branch**.
+   5. Under **Branch**, choose `main` and the folder `/ (root)`. Click **Save**.
+
+5. **Wait for the first publish.** Open the **Actions** tab. A run named "pages build and deployment" appears. It usually finishes in one to two minutes. The first publish can take a few minutes longer.
+
+6. **Open the site.** Go to https://mapninja.github.io/GeoDataGuru/. Settings > Pages also shows the address once the site is live.
+
+7. **Check it works.**
+   - The status line says it searched local records, and results appear.
+   - Search `bigfoot`. Two weird shelf entries should appear.
+   - Click **Search near center**. The count drops.
+   - The weird data shelf at the bottom lists 36 datasets.
+   - If you see "Could not load the data files", the page was opened from the wrong address. Use the `github.io` address above, not a file.
+
+8. **Optional: GitHub Actions.** Open the **Actions** tab. `check.yml` runs on every push and should show a green mark. `harvest.yml` runs on the 1st of each month and commits a refreshed `data/ogm-subset.json`. To let it commit, go to Settings > Actions > General > Workflow permissions and choose **Read and write permissions**. You can start `harvest.yml` by hand from the Actions tab with **Run workflow**.
+
+### After the first deploy
+
+Every push to `main` republishes the site in a minute or two. The loop for any change is:
+
+```
+git add -A
+git commit -m "Describe the change"
+git push origin main
+```
+
+You can also edit `data/weird-catalog.json` in the GitHub web editor and commit there.
+
+### Good to know
+
+- `check.yml` validates the data on every push, but Pages publishes on its own, so a failed check does not block the publish. It shows a red mark in the Actions tab. To check first, commit to a branch and merge through a pull request.
+- The whole repository is public on the site, including `scripts/` and `REPORT.md`.
+- If the site shows an old version, hard refresh (Cmd+Shift+R) and check the Actions tab for a failed build.
+- If the page is a 404, confirm Source is **Deploy from a branch**, the branch is `main`, and the folder is `/ (root)`. A private repository needs a paid GitHub plan for Pages.
+- The action versions in the workflows (checkout v4, setup-python v5) were not checked against current releases. If a run fails on a version, bump it.
 
 ## Add a dataset to the weird shelf
 

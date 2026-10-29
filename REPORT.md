@@ -49,14 +49,14 @@ For a live demo or a class, use the local snapshot and keep the live API for spo
 
 ## The prototype
 
-Files in the `geocities-geoportal` folder (the README has the full map):
+Files at the top level of the repository (the README has the full map):
 
 - `index.html`, `style.css`, `app.js`: the portal. About 900 lines of JavaScript, commented for beginners.
 - `data/ogm-subset.json`: the OpenGeoMetadata snapshot.
 - `data/weird-catalog.json`: the curated list of 36 odd datasets (see below).
 - `assets/`: four animated GIFs and their still PNGs.
 - `scripts/`: harvester, validator, tests and the GIF generator.
-- `../.github/workflows/`: `pages.yml` (deploy) and `harvest.yml` (monthly refresh).
+- `.github/workflows/`: `check.yml` (validates data on every push) and `harvest.yml` (monthly refresh).
 - `README.md`: how to run, deploy and update. `REPORT.md`: this file.
 
 How it behaves:
@@ -121,7 +121,7 @@ Sources that gave little: the Medium article lists 20 datasets, but only two are
 - Browser access (CORS) for USGS, GBIF, GDELT and other live sources on the shelf.
 - Rendering on the real `github.io` domain, and the new JSON loading there. Tests ran against a headless DOM with a stubbed map and stubbed `fetch`.
 - The Python harvester against live GitHub. It passes tests on synthetic Aardvark fixtures and against the committed file's key set. The committed 208 records came from the same rules applied in a browser, not from this script, so the first real run may produce slightly different records. Run it once and diff the output.
-- The two GitHub Actions workflows. They were never run. The action versions (checkout v4, setup-python v5, configure-pages v5, upload-pages-artifact v3, deploy-pages v4) were not checked against current releases because web fetch was unavailable. The `harvest.yml` step that starts the deploy needs the `actions: write` permission it declares.
+- The two GitHub Actions workflows. They were never run. The action versions (checkout v4, setup-python v5) were not checked against current releases because web fetch was unavailable. A commit that `harvest.yml` pushes with the default token should still republish Pages from `main`. That was not confirmed.
 - Layout of the new page. A static copy (no map, no scripts) was viewed at phone width: header, globes, banner, divider strip and the radar heading render correctly. The map, the results grid and the wide desktop layout were not viewed.
 - Leaflet drawing of the two-piece antimeridian boxes. The code that builds the pieces was tested, not the drawn map.
 - Link status of the 2014 and 2016 article links.
@@ -130,8 +130,8 @@ Sources that gave little: the Medium article lists 20 datasets, but only two are
 
 Full steps are in `README.md`. In short:
 
-1. Push the repository to GitHub. In Settings > Pages, set Source to **GitHub Actions**.
-2. Push to `main`. `.github/workflows/pages.yml` runs `validate_data.py` and `test_harvest.py`, then publishes only the `geocities-geoportal` folder. A bad data file stops the deploy.
+1. Push the repository to GitHub. In Settings > Pages, set Source to **Deploy from a branch**, branch `main`, folder `/ (root)`.
+2. Every push to `main` republishes the site. `.github/workflows/check.yml` runs `validate_data.py` and `test_harvest.py` on each push. It reports problems but cannot block the publish. Use a pull request to check before publishing.
 3. To add a weird dataset: use the "Add a dataset" form on the page to print a JSON entry, paste it into `data/weird-catalog.json`, run `python3 scripts/validate_data.py`, commit and push. The GitHub web editor works too.
 4. To refresh OGM records: `python3 scripts/harvest_ogm.py`, or wait for the monthly `harvest.yml` run (or start it from the Actions tab).
 

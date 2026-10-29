@@ -1,4 +1,4 @@
-# Refreshes data/ogm-subset.json from the OpenGeoMetadata repositories, then redeploys.
+# Refreshes data/ogm-subset.json from the OpenGeoMetadata repositories.
 #
 # When it runs: the first of every month, or when you click "Run workflow"
 # (the manual run lets you change how many records to keep per repo).
@@ -7,8 +7,8 @@
 #   1. Runs scripts/harvest_ogm.py (clones each OGM repo listed in scripts/harvest_config.json).
 #   2. Validates the result. If validation fails, nothing is committed.
 #   3. Commits the new file to main if it changed (the "generated" date means it changes every run).
-#   4. Starts the Pages deploy. (A commit made by this workflow does not start other
-#      workflows on its own, so we start the deploy by hand.)
+#
+# GitHub Pages publishes from main on its own, so the new commit goes live without a deploy step.
 #
 # The action versions were not checked against current releases. Bump them if a run fails.
 name: Refresh OpenGeoMetadata snapshot
@@ -24,7 +24,6 @@ on:
 
 permissions:
   contents: write            # to commit the new JSON
-  actions: write             # to start the deploy workflow
 
 jobs:
   harvest:
@@ -36,22 +35,18 @@ jobs:
           python-version: '3.12'
       - name: Harvest
         run: |
-          python3 geocities-geoportal/scripts/harvest_ogm.py \
+          python3 scripts/harvest_ogm.py \
             --per-repo "${{ github.event.inputs.per_repo || '16' }}"
       - name: Validate
-        run: python3 geocities-geoportal/scripts/validate_data.py
-      - name: Commit and deploy if the file changed
-        env:
-          GH_TOKEN: ${{ github.token }}
+        run: python3 scripts/validate_data.py
+      - name: Commit if the file changed
         run: |
-          # The "generated" date inside the file changes every run, so this commits monthly.
-          if git diff --quiet -- geocities-geoportal/data/ogm-subset.json; then
+          if git diff --quiet -- data/ogm-subset.json; then
             echo "File unchanged. Nothing to commit."
             exit 0
           fi
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add geocities-geoportal/data/ogm-subset.json
+          git add data/ogm-subset.json
           git commit -m "Refresh OpenGeoMetadata snapshot"
           git push
-          gh workflow run pages.yml

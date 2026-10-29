@@ -1,0 +1,36 @@
+# Checks the data files and scripts on every push and pull request.
+#
+# The site itself is NOT deployed by this workflow. GitHub Pages publishes the
+# repository root straight from the main branch:
+#   Settings > Pages > Build and deployment > Source: Deploy from a branch
+#   Branch: main, folder: / (root)
+#
+# Because Pages publishes on its own, this check cannot stop a bad push from going live.
+# It flags the problem in the Actions tab so you can fix it quickly. To catch mistakes
+# before they publish, edit on a branch and merge through a pull request.
+#
+# The action versions (checkout v4, setup-python v5) were not checked against current
+# releases. If a run fails on a version, bump it.
+name: Check data and scripts
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check the JSON data files
+        run: python3 scripts/validate_data.py
+      - name: Test the harvester
+        run: python3 scripts/test_harvest.py

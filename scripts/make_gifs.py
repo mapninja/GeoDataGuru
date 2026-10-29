@@ -2,7 +2,7 @@
 """
 Builds the animated GIFs used by the page. Original artwork, drawn with code.
 
-Run it from the geocities-geoportal folder:
+Run it from the repository root:
 
     python3 scripts/make_gifs.py
 

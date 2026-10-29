@@ -9,7 +9,7 @@ What this does, in plain words:
   3. Trims every record to the few fields the portal needs.
   4. Writes one compact JSON file that the web page loads.
 
-Usage (run from the geocities-geoportal folder):
+Usage (run from the repository root):
 
     python3 scripts/harvest_ogm.py                  # sample: per_repo records from each repo
     python3 scripts/harvest_ogm.py --full           # keep every record (file gets large)

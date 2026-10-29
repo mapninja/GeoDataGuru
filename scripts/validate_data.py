@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """
-Checks the two data files before they go live. Run from the geocities-geoportal folder:
+Checks the two data files before they go live. Run from the repository root:
 
     python3 scripts/validate_data.py
 
 Exit code 0 means both files are fine. Exit code 1 means at least one problem,
 and every problem is printed with the record it belongs to. The GitHub Actions
-workflow runs this on every push, so a typo in the JSON cannot reach the live site.
+workflow runs this on every push and flags a typo in the JSON.
 
 Needs only Python 3.9+. No packages.
 """
