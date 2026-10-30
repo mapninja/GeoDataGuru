@@ -1,0 +1,30 @@
+{
+ "schema": 1,
+ "note": "Generated into weird-catalog.json together with the records in metadata-aardvark/. Lists the allowed values for theme, spatial, fit and checked. Run python3 scripts/aardvark_catalog.py build after any change.",
+ "themes": [
+  "Paranormal",
+  "Earth events",
+  "Lost and historic",
+  "Transport and risk",
+  "Nature and sky"
+ ],
+ "spatial": [
+  "points",
+  "geocode",
+  "tracks",
+  "service",
+  "region",
+  "sky"
+ ],
+ "fit": [
+  "csv-layer",
+  "live",
+  "geocode",
+  "link-only",
+  "reference"
+ ],
+ "checked": [
+  "page read",
+  "listed only"
+ ]
+}

@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """
-Checks the two data files before they go live. Run from the repository root:
+Checks the data files before they go live: the weird catalog, the OGM snapshot and
+the Aardvark records the weird catalog is built from. Run from the repository root:
 
     python3 scripts/validate_data.py
 
@@ -16,7 +17,10 @@ import re
 import sys
 from urllib.parse import urlparse
 
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import aardvark_catalog  # noqa: E402
+
+ROOT =os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 WEIRD = os.path.join(ROOT, 'data', 'weird-catalog.json')
 OGM = os.path.join(ROOT, 'data', 'ogm-subset.json')
 
@@ -150,9 +154,19 @@ def check_ogm(data):
     return len(records)
 
 
+# ---------------------------------------------------------------- Aardvark records
+def check_aardvark():
+    """Checks the records in metadata-aardvark/ that the weird catalog is built from."""
+    built, record_problems = aardvark_catalog.build_catalog()
+    for p in record_problems:
+        bad('metadata-aardvark', p)
+    return built
+
+
 def main():
     weird = load(WEIRD)
     ogm = load(OGM)
+    built = check_aardvark()
     n_weird = check_weird(weird) if isinstance(weird, dict) else 0
     n_ogm = check_ogm(ogm) if isinstance(ogm, dict) else 0
     if problems:
@@ -161,6 +175,9 @@ def main():
             print('  -', p)
         return 1
     print('OK: %d weird catalog entries, %d OGM records' % (n_weird, n_ogm))
+    # Only a warning: the build-catalog workflow fixes this file after a push to metadata-aardvark/.
+    if built is not None and weird != built:
+        print('NOTE: data/weird-catalog.json is out of date. Run: python3 scripts/aardvark_catalog.py build')
     return 0
 
 

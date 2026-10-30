@@ -1,0 +1,47 @@
+{
+  "id": "strange-places",
+  "dct_title_s": "Strange Places v5.2",
+  "gbl_resourceClass_sm": [
+    "Datasets"
+  ],
+  "dct_accessRights_s": "Public",
+  "gbl_mdVersion_s": "Aardvark",
+  "schema_provider_s": "Weird shelf",
+  "dct_references_s": "{\"http://schema.org/url\":\"https://github.com/data-poems/strange-places-dataset\"}",
+  "dct_description_sm": [
+    "One file with category, latitude, longitude, name, description and date. Too large to load whole on a Pages site. Split by category first."
+  ],
+  "gbl_resourceType_sm": [
+    "Point data"
+  ],
+  "dcat_keyword_sm": [
+    "Paranormal"
+  ],
+  "dct_rights_sm": [
+    "Mixed. Card says \"other\", JSON-LD says CC BY 4.0, source table lists Fair Use for BFRO, NUFORC and Shadowlands"
+  ],
+  "gbl_mdModified_dt": "2026-10-30T00:00:00Z",
+  "gdg_theme_s": "Paranormal",
+  "gdg_spatial_s": "points",
+  "gdg_fit_s": "csv-layer",
+  "gdg_checked_s": "page read",
+  "gdg_size_s": "354,770 records, 14 categories",
+  "gdg_via_s": "Your link; awesome-public-datasets lists a copy at github.com/lukeslp/strange-places-dataset",
+  "gdg_layers_sm": [
+    "Tornadoes | 71813 | NOAA | Public domain",
+    "Caves | 70242 | OpenStreetMap | ODbL 1.0",
+    "UFO sightings | 60632 | NUFORC | Fair use (per README)",
+    "Megalithic sites | 60028 | Megalithic Portal | Attribution",
+    "Meteorite landings | 32186 | NASA | Public domain",
+    "Ghost towns | 18154 | OpenStreetMap | ODbL 1.0",
+    "Storm events | 14770 | NOAA | Public domain",
+    "Haunted places | 9717 | Shadowlands Index | Fair use (per README)",
+    "Thermal springs | 5003 | NOAA | Public domain",
+    "Bigfoot sightings | 3797 | BFRO | Fair use (per README)",
+    "Earthquakes | 3742 | USGS | Public domain",
+    "Shipwrecks | 3653 | NOAA | Public domain",
+    "Fireballs | 863 | NASA | Public domain",
+    "Volcanoes | 170 | USGS | Public domain"
+  ],
+  "gdg_order_i": 1
+}

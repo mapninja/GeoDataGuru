@@ -1,0 +1,28 @@
+{
+  "id": "spanish-flu",
+  "dct_title_s": "Spanish Flu dataset, 1918 to 1920",
+  "gbl_resourceClass_sm": [
+    "Datasets"
+  ],
+  "dct_accessRights_s": "Public",
+  "gbl_mdVersion_s": "Aardvark",
+  "schema_provider_s": "Weird shelf",
+  "dct_references_s": "{\"http://schema.org/url\":\"https://www.kaggle.com/datasets/thepodclub/spanish-flu-dataset\"}",
+  "dct_description_sm": [
+    "Likely country or city level. Not opened."
+  ],
+  "dcat_keyword_sm": [
+    "Lost and historic"
+  ],
+  "dct_rights_sm": [
+    "Not stated"
+  ],
+  "gbl_mdModified_dt": "2026-10-30T00:00:00Z",
+  "gdg_theme_s": "Lost and historic",
+  "gdg_spatial_s": "region",
+  "gdg_fit_s": "reference",
+  "gdg_checked_s": "listed only",
+  "gdg_size_s": "Not stated",
+  "gdg_via_s": "awesome-public-datasets (Healthcare)",
+  "gdg_order_i": 20
+}

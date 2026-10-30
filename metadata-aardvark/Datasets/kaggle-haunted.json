@@ -1,0 +1,31 @@
+{
+  "id": "kaggle-haunted",
+  "dct_title_s": "Haunted Places in the USA (Kaggle)",
+  "gbl_resourceClass_sm": [
+    "Datasets"
+  ],
+  "dct_accessRights_s": "Public",
+  "gbl_mdVersion_s": "Aardvark",
+  "schema_provider_s": "Weird shelf",
+  "dct_references_s": "{\"http://schema.org/url\":\"https://www.kaggle.com/datasets/sujaykapadnis/haunted-places\"}",
+  "dct_description_sm": [
+    "Compiled by Tim Renner from the Shadowlands Haunted Places Index, shared on data.world. Has latitude, longitude, city, state and a text description. Kaggle download needs a sign-in."
+  ],
+  "gbl_resourceType_sm": [
+    "Point data"
+  ],
+  "dcat_keyword_sm": [
+    "Paranormal"
+  ],
+  "dct_rights_sm": [
+    "Other (specified in description)"
+  ],
+  "gbl_mdModified_dt": "2026-10-30T00:00:00Z",
+  "gdg_theme_s": "Paranormal",
+  "gdg_spatial_s": "points",
+  "gdg_fit_s": "csv-layer",
+  "gdg_checked_s": "page read",
+  "gdg_size_s": "CSV, 5.38 MB, 10 columns",
+  "gdg_via_s": "Your link",
+  "gdg_order_i": 2
+}

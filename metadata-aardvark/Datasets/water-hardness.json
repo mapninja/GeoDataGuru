@@ -1,0 +1,28 @@
+{
+  "id": "water-hardness",
+  "dct_title_s": "US water hardness by city",
+  "gbl_resourceClass_sm": [
+    "Datasets"
+  ],
+  "dct_accessRights_s": "Public",
+  "gbl_mdVersion_s": "Aardvark",
+  "schema_provider_s": "Weird shelf",
+  "dct_references_s": "{\"http://schema.org/url\":\"https://www.tapwaterdata.com/water-hardness\"}",
+  "dct_description_sm": [
+    "City names only. Join to GeoNames for coordinates."
+  ],
+  "dcat_keyword_sm": [
+    "Nature and sky"
+  ],
+  "dct_rights_sm": [
+    "Not stated"
+  ],
+  "gbl_mdModified_dt": "2026-10-30T00:00:00Z",
+  "gdg_theme_s": "Nature and sky",
+  "gdg_spatial_s": "geocode",
+  "gdg_fit_s": "geocode",
+  "gdg_checked_s": "listed only",
+  "gdg_size_s": "16,561 US cities",
+  "gdg_via_s": "awesome-public-datasets (Earth Science)",
+  "gdg_order_i": 35
+}

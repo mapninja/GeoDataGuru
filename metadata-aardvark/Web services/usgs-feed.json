@@ -1,0 +1,28 @@
+{
+  "id": "usgs-feed",
+  "dct_title_s": "USGS Earthquake Feed",
+  "gbl_resourceClass_sm": [
+    "Web services"
+  ],
+  "dct_accessRights_s": "Public",
+  "gbl_mdVersion_s": "Aardvark",
+  "schema_provider_s": "Weird shelf",
+  "dct_references_s": "{\"http://schema.org/url\":\"https://earthquake.usgs.gov/earthquakes/feed/\"}",
+  "dct_description_sm": [
+    "Good candidate for a live layer. We did not test browser access from a Pages origin."
+  ],
+  "dcat_keyword_sm": [
+    "Earth events"
+  ],
+  "dct_rights_sm": [
+    "Public domain (USGS)"
+  ],
+  "gbl_mdModified_dt": "2026-10-30T00:00:00Z",
+  "gdg_theme_s": "Earth events",
+  "gdg_spatial_s": "service",
+  "gdg_fit_s": "live",
+  "gdg_checked_s": "listed only",
+  "gdg_size_s": "Live GeoJSON, updated within a minute",
+  "gdg_via_s": "wierddatacollections.com",
+  "gdg_order_i": 10
+}

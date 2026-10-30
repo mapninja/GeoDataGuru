@@ -1,0 +1,53 @@
+# Rebuilds data/weird-catalog.json from the Aardvark records in metadata-aardvark/.
+#
+# When it runs: after a push to main that changes a record, the vocabulary file or
+# the build script, or when you click "Run workflow".
+#
+# What it does:
+#   1. Runs scripts/aardvark_catalog.py build. If a record has a problem, the run fails
+#      and nothing is committed. The Actions log lists each problem.
+#   2. Commits data/weird-catalog.json to main if it changed.
+#
+# The commit only touches data/weird-catalog.json, which is not in the path list below,
+# so this workflow does not trigger itself. Commits made with the built-in token do not
+# start other workflows either.
+#
+# GitHub Pages publishes from main on its own, so the new commit goes live without a deploy step.
+# Needs Settings > Actions > General > Workflow permissions set to "Read and write permissions".
+#
+# The action versions were not checked against current releases. Bump them if a run fails.
+name: Rebuild weird catalog
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'metadata-aardvark/**'
+      - 'data/weird-vocab.json'
+      - 'scripts/aardvark_catalog.py'
+  workflow_dispatch:
+
+permissions:
+  contents: write            # to commit the rebuilt JSON
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Build
+        run: python3 scripts/aardvark_catalog.py build
+      - name: Commit if the file changed
+        run: |
+          if git diff --quiet -- data/weird-catalog.json; then
+            echo "File unchanged. Nothing to commit."
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/weird-catalog.json
+          git commit -m "Rebuild weird catalog from Aardvark records"
+          git push

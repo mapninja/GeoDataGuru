@@ -177,12 +177,12 @@
   </div>
   <ul id="shelf" class="shelflist"></ul>
 
-  <!-- Helper that prints a JSON entry to paste into data/weird-catalog.json. It saves nothing. -->
+  <!-- Helper that prints an Aardvark record to save under metadata-aardvark/. It saves nothing. -->
   <details class="addbox">
     <summary>Add a dataset to the shelf</summary>
     <p class="small">
-      Fill in the form, copy the result, and paste it into the "datasets" list in data/weird-catalog.json.
-      Commit the file and GitHub Pages republishes. Nothing is saved from this page.
+      Fill in the form, copy the record, and save it as a new file under metadata-aardvark/ (the path is shown below the record).
+      Commit it and the catalog rebuilds. You can also edit records in OGM Metadata Studio. Nothing is saved from this page.
     </p>
     <form id="addForm" class="addform">
       <label for="addTitle">Title</label>
@@ -210,8 +210,9 @@
         <button type="button" id="addCopy" class="btn" hidden>Copy</button>
       </div>
     </form>
-    <label for="addOut" class="small">JSON entry</label>
+    <label for="addOut" class="small">Aardvark record</label>
     <textarea id="addOut" class="addout" rows="10" readonly></textarea>
+    <p id="addPath" class="small"></p>
   </details>
 </section>
 
@@ -240,6 +241,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/h3-js@4.1.0/dist/h3-js.umd.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+<script src="aardvark.js"></script>
 <script src="app.js"></script>
 </body>
 </html>

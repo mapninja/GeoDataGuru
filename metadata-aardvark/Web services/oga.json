@@ -1,0 +1,28 @@
+{
+  "id": "oga",
+  "dct_title_s": "Oil and Gas Authority open data (UK)",
+  "gbl_resourceClass_sm": [
+    "Web services"
+  ],
+  "dct_accessRights_s": "Public",
+  "gbl_mdVersion_s": "Aardvark",
+  "schema_provider_s": "Weird shelf",
+  "dct_references_s": "{\"http://schema.org/url\":\"https://data-ogauthority.opendata.arcgis.com/\"}",
+  "dct_description_sm": [
+    "ArcGIS Hub site. Most ArcGIS services can be read from a browser."
+  ],
+  "dcat_keyword_sm": [
+    "Transport and risk"
+  ],
+  "dct_rights_sm": [
+    "Not stated"
+  ],
+  "gbl_mdModified_dt": "2026-10-30T00:00:00Z",
+  "gdg_theme_s": "Transport and risk",
+  "gdg_spatial_s": "service",
+  "gdg_fit_s": "live",
+  "gdg_checked_s": "listed only",
+  "gdg_size_s": "12,500 offshore wellbores, 5,000 seismic surveys (per list entry)",
+  "gdg_via_s": "awesome-public-datasets (Earth Science)",
+  "gdg_order_i": 32
+}

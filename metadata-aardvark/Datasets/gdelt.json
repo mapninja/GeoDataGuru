@@ -1,0 +1,31 @@
+{
+  "id": "gdelt",
+  "dct_title_s": "GDELT: geotagged world news",
+  "gbl_resourceClass_sm": [
+    "Datasets"
+  ],
+  "dct_accessRights_s": "Public",
+  "gbl_mdVersion_s": "Aardvark",
+  "schema_provider_s": "Weird shelf",
+  "dct_references_s": "{\"http://schema.org/url\":\"https://www.gdeltproject.org/\"}",
+  "dct_description_sm": [
+    "Large. Use the query services rather than raw files."
+  ],
+  "gbl_resourceType_sm": [
+    "Point data"
+  ],
+  "dcat_keyword_sm": [
+    "Nature and sky"
+  ],
+  "dct_rights_sm": [
+    "Not stated on the page"
+  ],
+  "gbl_mdModified_dt": "2026-10-30T00:00:00Z",
+  "gdg_theme_s": "Nature and sky",
+  "gdg_spatial_s": "points",
+  "gdg_fit_s": "live",
+  "gdg_checked_s": "page read",
+  "gdg_size_s": "Updated every 15 minutes",
+  "gdg_via_s": "wierddatacollections.com",
+  "gdg_order_i": 36
+}

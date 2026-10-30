@@ -13,15 +13,20 @@ Local search runs in the browser and uses no API calls. See `REPORT.md` for the 
 | Path | What it is |
 | --- | --- |
 | `index.html`, `style.css`, `app.js` | The page. `app.js` is commented for beginners. |
+| `aardvark.js` | Turns a weird shelf entry into an Aardvark record. Used by the "Add a dataset" form. |
 | `data/ogm-subset.json` | OGM records. Written by the harvester. |
-| `data/weird-catalog.json` | Weird datasets. Edited by hand. |
+| `metadata-aardvark/` | The weird shelf as OpenGeoMetadata Aardvark records, one JSON file each. **Edit these.** Layout matches what OGM Metadata Studio reads and writes. |
+| `data/weird-catalog.json` | The weird shelf as the page loads it. **Built from `metadata-aardvark/`. Do not edit by hand.** |
+| `data/weird-vocab.json` | The allowed values for theme, spatial, fit and checked. Edited by hand. |
 | `assets/` | Animated GIFs and still PNGs (globe, satellite orbit, radar, divider strip). |
 | `scripts/harvest_ogm.py` | Rebuilds `ogm-subset.json` from GitHub. |
 | `scripts/harvest_config.json` | Which OGM repos to harvest and how many records to keep. |
-| `scripts/validate_data.py` | Checks both JSON files. |
+| `scripts/aardvark_catalog.py` | Builds `weird-catalog.json` from the Aardvark records. |
+| `scripts/validate_data.py` | Checks the catalog, the OGM snapshot and the Aardvark records. |
 | `scripts/test_harvest.py` | Tests for the harvester. |
+| `scripts/test_aardvark_catalog.py` | Tests for the record converter and `aardvark.js`. |
 | `scripts/make_gifs.py` | Redraws the GIFs. |
-| `.github/workflows/` | `check.yml` validates the data on every push. `harvest.yml` refreshes the snapshot monthly. |
+| `.github/workflows/` | `check.yml` validates the data on every push. `harvest.yml` refreshes the snapshot monthly. `build-catalog.yml` rebuilds `weird-catalog.json` when a record changes. |
 | `.nojekyll` | Empty file. Tells GitHub Pages to serve the files as they are. |
 
 ## Run it on your computer
@@ -85,7 +90,7 @@ The site files live at the top level of the repository, so Pages publishes strai
    - The weird data shelf at the bottom lists 36 datasets.
    - If you see "Could not load the data files", the page was opened from the wrong address. Use the `github.io` address above, not a file.
 
-8. **Optional: GitHub Actions.** Open the **Actions** tab. `check.yml` runs on every push and should show a green mark. `harvest.yml` runs on the 1st of each month and commits a refreshed `data/ogm-subset.json`. To let it commit, go to Settings > Actions > General > Workflow permissions and choose **Read and write permissions**. You can start `harvest.yml` by hand from the Actions tab with **Run workflow**.
+8. **Optional: GitHub Actions.** Open the **Actions** tab. `check.yml` runs on every push and should show a green mark. `harvest.yml` runs on the 1st of each month and commits a refreshed `data/ogm-subset.json`. `build-catalog.yml` commits a rebuilt `data/weird-catalog.json` after a record changes. To let them commit, go to Settings > Actions > General > Workflow permissions and choose **Read and write permissions**. You can start either one by hand from the Actions tab with **Run workflow**.
 
 ### After the first deploy
 
@@ -97,7 +102,7 @@ git commit -m "Describe the change"
 git push origin main
 ```
 
-You can also edit `data/weird-catalog.json` in the GitHub web editor and commit there.
+You can also edit a record in the GitHub web editor and commit there. See the next sections.
 
 ### Good to know
 
@@ -107,36 +112,67 @@ You can also edit `data/weird-catalog.json` in the GitHub web editor and commit 
 - If the page is a 404, confirm Source is **Deploy from a branch**, the branch is `main`, and the folder is `/ (root)`. A private repository needs a paid GitHub plan for Pages.
 - The action versions in the workflows (checkout v4, setup-python v5) were not checked against current releases. If a run fails on a version, bump it.
 
-## Add a dataset to the weird shelf
+## Weird shelf records (Aardvark)
+
+Each weird dataset is one [OpenGeoMetadata Aardvark](https://opengeometadata.org/) record in `metadata-aardvark/<Resource class>/<id>.json`. Most are in `Datasets/`. Live services are in `Web services/`. The page does not read those files. `scripts/aardvark_catalog.py build` gathers them into `data/weird-catalog.json`, and the `build-catalog.yml` workflow runs that for you after a push.
+
+How the old fields map:
+
+| Shelf field | Aardvark field |
+| --- | --- |
+| `id`, `title` | `id`, `dct_title_s` |
+| `note` | `dct_description_sm` |
+| `url` | `dct_references_s` (JSON text, key `http://schema.org/url`) |
+| `license` | `dct_rights_sm` (free text, so not `dct_license_sm`, which expects a link) |
+| `theme` | `gdg_theme_s`. A copy goes in `dcat_keyword_sm`, but the page reads `gdg_theme_s`. |
+| `spatial`, `fit`, `checked`, `size`, `via` | `gdg_spatial_s`, `gdg_fit_s`, `gdg_checked_s`, `gdg_size_s`, `gdg_via_s` |
+| `layers` | `gdg_layers_sm`. One text row per layer: `name \| count \| source \| license`. |
+| list position | `gdg_order_i`. Lower numbers show first. Records without one go last. |
+
+Fields that start with `gdg_` have no Aardvark equivalent. They are ordinary extra fields, and Studio keeps them when it imports and exports. `theme`, `spatial`, `fit` and `checked` must be a value listed in `data/weird-vocab.json`. To add a new theme, add it there.
+
+### Add a dataset
 
 Option A, with the page:
 
 1. Open the page and expand **Add a dataset to the shelf**.
 2. Fill in the form and click **Make JSON**.
-3. Click **Copy**. Paste the text into the `datasets` list in `data/weird-catalog.json`, before the final `]`.
+3. Click **Copy**. Save the text as the file named under the record, for example `metadata-aardvark/Datasets/my-dataset.json`. In the GitHub web editor, use **Add file > Create new file**.
 
-Option B, by hand. Copy an existing entry and edit it. Fields:
+Option B, by hand. Copy an existing record in `metadata-aardvark/` and edit it. The file name must be the `id` plus `.json`, and the folder must be the record's first resource class.
 
-| Field | Rule |
-| --- | --- |
-| `id` | Lowercase letters, numbers and hyphens. Must be unique. |
-| `title` | Shown on the card. |
-| `theme`, `spatial`, `fit`, `checked` | Must be a value listed in `meta` at the top of the file. To add a new theme, add it to `meta.themes` too. |
-| `license` | Free text. Write "Unknown" if you have not checked. |
-| `url` | Starts with `http://` or `https://`. |
-| `via`, `size`, `note` | Free text. |
-| `layers` | Optional. List of `[name, count, source, license]` for datasets with sub-layers. |
-
-Then check and publish:
+Then publish:
 
 ```
+python3 scripts/aardvark_catalog.py build   # writes data/weird-catalog.json
 python3 scripts/validate_data.py
-git add data/weird-catalog.json
+git add metadata-aardvark data/weird-catalog.json
 git commit -m "Add dataset"
 git push
 ```
 
-The site updates in a minute or two. You can also edit the file in the GitHub web editor and commit there.
+If you skip the `build` line and push only the record, `build-catalog.yml` rebuilds the catalog and commits it. That takes a minute or so. If a record has a problem, the run fails and the Actions log says which file and what is wrong.
+
+### Edit a record
+
+- On the page, each shelf card has an **Edit this record** link to the GitHub web editor for its file. Commit there and the catalog rebuilds.
+- Or edit the JSON file locally and run the commands above.
+
+### Edit records in OGM Metadata Studio
+
+[OGM Metadata Studio](https://github.com/ewlarson/ogm-metadata-studio) is a separate browser app for editing Aardvark records. It is not part of this site, so you run it yourself. Its README says to clone it, then run `npm install` and `npm run dev` inside its `web/` folder, which serves it at http://localhost:5173. Editing needs a Google sign-in, and reading a repository needs a GitHub token.
+
+1. In Studio, use the GitHub import and point it at `mapninja/GeoDataGuru`, branch `main`. The importer looks for a `metadata-aardvark` folder, which is where these records are.
+2. Edit records. The `gdg_` fields are extra fields, so they may not appear as named form fields. If you cannot find them, edit those records in the JSON file instead.
+3. Export the records as a ZIP. Studio names each file after the record's `id` and its folder after the first resource class, which matches this repository.
+4. Unzip it over the repository so the files land in `metadata-aardvark/`. Studio may add empty fields. That is harmless.
+5. Commit and push. The catalog rebuilds. Check the build log if a record is rejected.
+
+Notes:
+
+- Studio's README lists writing edits straight back to GitHub as "In Progress", so the ZIP step is the way to get edits into the repository.
+- If you change a record's first resource class in Studio, the export puts it in a different folder. Delete the old file, or the build reports a duplicate id.
+- Records for the OGM snapshot (`data/ogm-subset.json`) are not edited here. They are harvested from the OpenGeoMetadata repositories, and fixes belong upstream.
 
 ## Refresh the OpenGeoMetadata snapshot
 

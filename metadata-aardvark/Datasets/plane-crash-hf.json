@@ -1,0 +1,28 @@
+{
+  "id": "plane-crash-hf",
+  "dct_title_s": "PlaneCrashData (Hugging Face)",
+  "gbl_resourceClass_sm": [
+    "Datasets"
+  ],
+  "dct_accessRights_s": "Public",
+  "gbl_mdVersion_s": "Aardvark",
+  "schema_provider_s": "Weird shelf",
+  "dct_references_s": "{\"http://schema.org/url\":\"https://huggingface.co/datasets/MauroPello/planecrashdata\"}",
+  "dct_description_sm": [
+    "Not opened. Check for coordinates."
+  ],
+  "dcat_keyword_sm": [
+    "Transport and risk"
+  ],
+  "dct_rights_sm": [
+    "Not stated"
+  ],
+  "gbl_mdModified_dt": "2026-10-30T00:00:00Z",
+  "gdg_theme_s": "Transport and risk",
+  "gdg_spatial_s": "geocode",
+  "gdg_fit_s": "geocode",
+  "gdg_checked_s": "listed only",
+  "gdg_size_s": "Aviation accidents, 1918 to present",
+  "gdg_via_s": "awesome-public-datasets (Transportation)",
+  "gdg_order_i": 23
+}

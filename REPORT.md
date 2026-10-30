@@ -8,7 +8,7 @@ Prepared October 29, 2026 for Stace Maples. All API measurements were taken that
 - **Not ready for a classroom of 30 on one network without a change.** The API allows 10 requests per minute and counts some image requests. A shared campus IP will hit that limit fast. Three fixes are listed under "Options".
 - **GeoCities styling is the easy part.** It is plain CSS and animated GIFs. It does not affect the architecture.
 - **The rate limit is now avoidable for demos.** The page searches a local snapshot of 208 OpenGeoMetadata records plus the 36-entry weird shelf with no API calls. The live API is one menu choice away.
-- **Updating is a file edit.** New datasets go into `data/weird-catalog.json`. The OGM snapshot is rebuilt by a script or a monthly GitHub Action. Pushing to `main` redeploys.
+- **Updating is a file edit.** New datasets go into `metadata-aardvark/` as Aardvark records, and `data/weird-catalog.json` is built from them. The OGM snapshot is rebuilt by a script or a monthly GitHub Action. Pushing to `main` redeploys.
 
 ## What the API does (measured)
 
@@ -131,8 +131,8 @@ Sources that gave little: the Medium article lists 20 datasets, but only two are
 Full steps are in `README.md`. In short:
 
 1. Push the repository to GitHub. In Settings > Pages, set Source to **Deploy from a branch**, branch `main`, folder `/ (root)`.
-2. Every push to `main` republishes the site. `.github/workflows/check.yml` runs `validate_data.py` and `test_harvest.py` on each push. It reports problems but cannot block the publish. Use a pull request to check before publishing.
-3. To add a weird dataset: use the "Add a dataset" form on the page to print a JSON entry, paste it into `data/weird-catalog.json`, run `python3 scripts/validate_data.py`, commit and push. The GitHub web editor works too.
+2. Every push to `main` republishes the site. `.github/workflows/check.yml` runs `validate_data.py`, `test_harvest.py` and `test_aardvark_catalog.py` on each push. It reports problems but cannot block the publish. Use a pull request to check before publishing.
+3. To add a weird dataset: use the "Add a dataset" form on the page to print an Aardvark record, save it under `metadata-aardvark/`, then run `python3 scripts/aardvark_catalog.py build` and `python3 scripts/validate_data.py`, commit and push. If you push only the record, `build-catalog.yml` rebuilds `data/weird-catalog.json`. The GitHub web editor and OGM Metadata Studio can edit the records too. See `README.md`.
 4. To refresh OGM records: `python3 scripts/harvest_ogm.py`, or wait for the monthly `harvest.yml` run (or start it from the Actions tab).
 
 Run locally with `python3 -m http.server 4173` inside the folder. Opening `index.html` as a file does not work, because the page loads JSON. The page detects this and falls back to the live API with a message.

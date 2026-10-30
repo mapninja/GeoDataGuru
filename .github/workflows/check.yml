@@ -34,3 +34,5 @@ jobs:
         run: python3 scripts/validate_data.py
       - name: Test the harvester
         run: python3 scripts/test_harvest.py
+      - name: Test the Aardvark records and catalog build
+        run: python3 scripts/test_aardvark_catalog.py

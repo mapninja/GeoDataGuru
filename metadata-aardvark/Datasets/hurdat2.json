@@ -1,0 +1,31 @@
+{
+  "id": "hurdat2",
+  "dct_title_s": "Atlantic hurricanes since 1851 (HURDAT2)",
+  "gbl_resourceClass_sm": [
+    "Datasets"
+  ],
+  "dct_accessRights_s": "Public",
+  "gbl_mdVersion_s": "Aardvark",
+  "schema_provider_s": "Weird shelf",
+  "dct_references_s": "{\"http://schema.org/url\":\"https://wierddatacollections.com/datasets/atlantic-hurricanes-since-1851/\"}",
+  "dct_description_sm": [
+    "Storm tracks are paths. Convert to points or GeoJSON lines before loading."
+  ],
+  "gbl_resourceType_sm": [
+    "Line data"
+  ],
+  "dcat_keyword_sm": [
+    "Earth events"
+  ],
+  "dct_rights_sm": [
+    "Public domain (NOAA)"
+  ],
+  "gbl_mdModified_dt": "2026-10-30T00:00:00Z",
+  "gdg_theme_s": "Earth events",
+  "gdg_spatial_s": "tracks",
+  "gdg_fit_s": "csv-layer",
+  "gdg_checked_s": "page read",
+  "gdg_size_s": "1,973 storms",
+  "gdg_via_s": "wierddatacollections.com",
+  "gdg_order_i": 9
+}

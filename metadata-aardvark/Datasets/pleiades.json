@@ -1,0 +1,31 @@
+{
+  "id": "pleiades",
+  "dct_title_s": "Pleiades: gazetteer of ancient places",
+  "gbl_resourceClass_sm": [
+    "Datasets"
+  ],
+  "dct_accessRights_s": "Public",
+  "gbl_mdVersion_s": "Aardvark",
+  "schema_provider_s": "Weird shelf",
+  "dct_references_s": "{\"http://schema.org/url\":\"https://pleiades.stoa.org/\"}",
+  "dct_description_sm": [
+    "Pairs well with BTAA historic map records."
+  ],
+  "gbl_resourceType_sm": [
+    "Point data"
+  ],
+  "dcat_keyword_sm": [
+    "Lost and historic"
+  ],
+  "dct_rights_sm": [
+    "Not stated"
+  ],
+  "gbl_mdModified_dt": "2026-10-30T00:00:00Z",
+  "gdg_theme_s": "Lost and historic",
+  "gdg_spatial_s": "points",
+  "gdg_fit_s": "csv-layer",
+  "gdg_checked_s": "listed only",
+  "gdg_size_s": "Not stated",
+  "gdg_via_s": "awesome-public-datasets (GIS)",
+  "gdg_order_i": 16
+}

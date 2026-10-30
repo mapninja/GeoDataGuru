@@ -1,0 +1,31 @@
+{
+  "id": "radiance",
+  "dct_title_s": "Radiance GeoJSON: global light pollution",
+  "gbl_resourceClass_sm": [
+    "Datasets"
+  ],
+  "dct_accessRights_s": "Public",
+  "gbl_mdVersion_s": "Aardvark",
+  "schema_provider_s": "Weird shelf",
+  "dct_references_s": "{\"http://schema.org/url\":\"https://archive.org/details/radiance-geojson-data-2025\"}",
+  "dct_description_sm": [
+    "Nighttime light dataset in GeoJSON. Check file size before loading."
+  ],
+  "gbl_resourceType_sm": [
+    "Point data"
+  ],
+  "dcat_keyword_sm": [
+    "Earth events"
+  ],
+  "dct_rights_sm": [
+    "Not stated"
+  ],
+  "gbl_mdModified_dt": "2026-10-30T00:00:00Z",
+  "gdg_theme_s": "Earth events",
+  "gdg_spatial_s": "points",
+  "gdg_fit_s": "csv-layer",
+  "gdg_checked_s": "listed only",
+  "gdg_size_s": "Not stated",
+  "gdg_via_s": "awesome-public-datasets (Earth Science)",
+  "gdg_order_i": 13
+}

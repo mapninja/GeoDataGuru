@@ -1,0 +1,31 @@
+{
+  "id": "fra-safety",
+  "dct_title_s": "FRA railroad safety data, including highway-rail crossings",
+  "gbl_resourceClass_sm": [
+    "Datasets"
+  ],
+  "dct_accessRights_s": "Public",
+  "gbl_mdVersion_s": "Aardvark",
+  "schema_provider_s": "Weird shelf",
+  "dct_references_s": "{\"http://schema.org/url\":\"http://safetydata.fra.dot.gov/officeofsafety/default.aspx\"}",
+  "dct_description_sm": [
+    "2014 link may have moved. The article suggests mapping crossing incidents."
+  ],
+  "gbl_resourceType_sm": [
+    "Point data"
+  ],
+  "dcat_keyword_sm": [
+    "Transport and risk"
+  ],
+  "dct_rights_sm": [
+    "Not stated"
+  ],
+  "gbl_mdModified_dt": "2026-10-30T00:00:00Z",
+  "gdg_theme_s": "Transport and risk",
+  "gdg_spatial_s": "points",
+  "gdg_fit_s": "csv-layer",
+  "gdg_checked_s": "listed only",
+  "gdg_size_s": "Not stated",
+  "gdg_via_s": "rs.io 100+ Interesting Data Sets (2014)",
+  "gdg_order_i": 26
+}

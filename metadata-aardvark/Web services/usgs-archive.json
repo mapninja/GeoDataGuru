@@ -1,0 +1,28 @@
+{
+  "id": "usgs-archive",
+  "dct_title_s": "USGS Earthquake Archives",
+  "gbl_resourceClass_sm": [
+    "Web services"
+  ],
+  "dct_accessRights_s": "Public",
+  "gbl_mdVersion_s": "Aardvark",
+  "schema_provider_s": "Weird shelf",
+  "dct_references_s": "{\"http://schema.org/url\":\"http://earthquake.usgs.gov/earthquakes/search/\"}",
+  "dct_description_sm": [
+    "Link uses http. Check for the https version."
+  ],
+  "dcat_keyword_sm": [
+    "Earth events"
+  ],
+  "dct_rights_sm": [
+    "Public domain (USGS)"
+  ],
+  "gbl_mdModified_dt": "2026-10-30T00:00:00Z",
+  "gdg_theme_s": "Earth events",
+  "gdg_spatial_s": "service",
+  "gdg_fit_s": "live",
+  "gdg_checked_s": "listed only",
+  "gdg_size_s": "Searchable archive",
+  "gdg_via_s": "awesome-public-datasets (Earth Science)",
+  "gdg_order_i": 11
+}

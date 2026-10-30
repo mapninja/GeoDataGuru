@@ -1,0 +1,28 @@
+{
+  "id": "rumsey",
+  "dct_title_s": "David Rumsey Map Collection",
+  "gbl_resourceClass_sm": [
+    "Datasets"
+  ],
+  "dct_accessRights_s": "Public",
+  "gbl_mdVersion_s": "Aardvark",
+  "schema_provider_s": "Weird shelf",
+  "dct_references_s": "{\"http://schema.org/url\":\"https://www.davidrumsey.com/\"}",
+  "dct_description_sm": [
+    "Same subject as the BTAA scanned maps. Link out from results."
+  ],
+  "dcat_keyword_sm": [
+    "Lost and historic"
+  ],
+  "dct_rights_sm": [
+    "Check each map"
+  ],
+  "gbl_mdModified_dt": "2026-10-30T00:00:00Z",
+  "gdg_theme_s": "Lost and historic",
+  "gdg_spatial_s": "region",
+  "gdg_fit_s": "link-only",
+  "gdg_checked_s": "page read",
+  "gdg_size_s": "About 100,000 historic maps",
+  "gdg_via_s": "wierddatacollections.com",
+  "gdg_order_i": 17
+}

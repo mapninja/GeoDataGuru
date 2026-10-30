@@ -1,0 +1,31 @@
+{
+  "id": "bfro-gdb",
+  "dct_title_s": "BFRO Geographical Database of Sightings",
+  "gbl_resourceClass_sm": [
+    "Datasets"
+  ],
+  "dct_accessRights_s": "Public",
+  "gbl_mdVersion_s": "Aardvark",
+  "schema_provider_s": "Weird shelf",
+  "dct_references_s": "{\"http://schema.org/url\":\"https://www.bfro.net/gdb/\"}",
+  "dct_description_sm": [
+    "No download or API seen on the page. Ask BFRO before copying report text to a public repository. Link to reports instead."
+  ],
+  "gbl_resourceType_sm": [
+    "Point data"
+  ],
+  "dcat_keyword_sm": [
+    "Paranormal"
+  ],
+  "dct_rights_sm": [
+    "Copyright BFRO.net. No open license found"
+  ],
+  "gbl_mdModified_dt": "2026-10-30T00:00:00Z",
+  "gdg_theme_s": "Paranormal",
+  "gdg_spatial_s": "points",
+  "gdg_fit_s": "link-only",
+  "gdg_checked_s": "page read",
+  "gdg_size_s": "Hundreds of reports per state; recent additions through 2026",
+  "gdg_via_s": "Your link",
+  "gdg_order_i": 4
+}

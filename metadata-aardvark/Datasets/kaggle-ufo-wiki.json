@@ -1,0 +1,28 @@
+{
+  "id": "kaggle-ufo-wiki",
+  "dct_title_s": "UFO Sightings Dataset (Kaggle, from Wikipedia)",
+  "gbl_resourceClass_sm": [
+    "Datasets"
+  ],
+  "dct_accessRights_s": "Public",
+  "gbl_mdVersion_s": "Aardvark",
+  "schema_provider_s": "Weird shelf",
+  "dct_references_s": "{\"http://schema.org/url\":\"https://www.kaggle.com/datasets/ahemateja19bec1025/ufosightingsdataset\"}",
+  "dct_description_sm": [
+    "Columns are Number, Date, Name, City and State, Country, Description. No coordinates, so geocode city names before mapping. Small, famous events rather than a sighting database."
+  ],
+  "dcat_keyword_sm": [
+    "Paranormal"
+  ],
+  "dct_rights_sm": [
+    "CC0: Public Domain"
+  ],
+  "gbl_mdModified_dt": "2026-10-30T00:00:00Z",
+  "gdg_theme_s": "Paranormal",
+  "gdg_spatial_s": "geocode",
+  "gdg_fit_s": "geocode",
+  "gdg_checked_s": "page read",
+  "gdg_size_s": "CSV, 28.49 kB, 6 columns",
+  "gdg_via_s": "Your link",
+  "gdg_order_i": 5
+}

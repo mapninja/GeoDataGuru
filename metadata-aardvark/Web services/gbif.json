@@ -1,0 +1,28 @@
+{
+  "id": "gbif",
+  "dct_title_s": "GBIF species occurrences",
+  "gbl_resourceClass_sm": [
+    "Web services"
+  ],
+  "dct_accessRights_s": "Public",
+  "gbl_mdVersion_s": "Aardvark",
+  "schema_provider_s": "Weird shelf",
+  "dct_references_s": "{\"http://schema.org/url\":\"https://www.gbif.org/\"}",
+  "dct_description_sm": [
+    "Has a public API. We did not test browser access. Good for a \"sightings of frogs\" style layer."
+  ],
+  "dcat_keyword_sm": [
+    "Nature and sky"
+  ],
+  "dct_rights_sm": [
+    "Varies by dataset"
+  ],
+  "gbl_mdModified_dt": "2026-10-30T00:00:00Z",
+  "gdg_theme_s": "Nature and sky",
+  "gdg_spatial_s": "service",
+  "gdg_fit_s": "live",
+  "gdg_checked_s": "page read",
+  "gdg_size_s": "2.6 billion records (per page)",
+  "gdg_via_s": "wierddatacollections.com",
+  "gdg_order_i": 33
+}

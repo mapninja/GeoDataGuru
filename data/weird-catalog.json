@@ -1,7 +1,7 @@
 {
  "meta": {
   "schema": 1,
-  "note": "Hand-curated weird and unusual datasets. Add an entry to the datasets list. Run python3 scripts/validate_data.py to check.",
+  "note": "Generated into weird-catalog.json together with the records in metadata-aardvark/. Lists the allowed values for theme, spatial, fit and checked. Run python3 scripts/aardvark_catalog.py build after any change.",
   "themes": [
    "Paranormal",
    "Earth events",
@@ -127,7 +127,8 @@
      "USGS",
      "Public domain"
     ]
-   ]
+   ],
+   "record": "metadata-aardvark/Datasets/strange-places.json"
   },
   {
    "id": "kaggle-haunted",
@@ -140,7 +141,8 @@
    "fit": "csv-layer",
    "url": "https://www.kaggle.com/datasets/sujaykapadnis/haunted-places",
    "via": "Your link",
-   "note": "Compiled by Tim Renner from the Shadowlands Haunted Places Index, shared on data.world. Has latitude, longitude, city, state and a text description. Kaggle download needs a sign-in."
+   "note": "Compiled by Tim Renner from the Shadowlands Haunted Places Index, shared on data.world. Has latitude, longitude, city, state and a text description. Kaggle download needs a sign-in.",
+   "record": "metadata-aardvark/Datasets/kaggle-haunted.json"
   },
   {
    "id": "kaggle-bigfoot",
@@ -153,7 +155,8 @@
    "fit": "csv-layer",
    "url": "https://www.kaggle.com/datasets/thedevastator/unlocking-mysteries-of-bigfoot-through-sightings",
    "via": "Your link",
-   "note": "BFRO reports with coordinates, classification, date and weather from the Dark Sky API. Source is BFRO, so see the BFRO entry before publishing a copy."
+   "note": "BFRO reports with coordinates, classification, date and weather from the Dark Sky API. Source is BFRO, so see the BFRO entry before publishing a copy.",
+   "record": "metadata-aardvark/Datasets/kaggle-bigfoot.json"
   },
   {
    "id": "bfro-gdb",
@@ -166,7 +169,8 @@
    "fit": "link-only",
    "url": "https://www.bfro.net/gdb/",
    "via": "Your link",
-   "note": "No download or API seen on the page. Ask BFRO before copying report text to a public repository. Link to reports instead."
+   "note": "No download or API seen on the page. Ask BFRO before copying report text to a public repository. Link to reports instead.",
+   "record": "metadata-aardvark/Datasets/bfro-gdb.json"
   },
   {
    "id": "kaggle-ufo-wiki",
@@ -179,7 +183,8 @@
    "fit": "geocode",
    "url": "https://www.kaggle.com/datasets/ahemateja19bec1025/ufosightingsdataset",
    "via": "Your link",
-   "note": "Columns are Number, Date, Name, City and State, Country, Description. No coordinates, so geocode city names before mapping. Small, famous events rather than a sighting database."
+   "note": "Columns are Number, Date, Name, City and State, Country, Description. No coordinates, so geocode city names before mapping. Small, famous events rather than a sighting database.",
+   "record": "metadata-aardvark/Datasets/kaggle-ufo-wiki.json"
   },
   {
    "id": "planetsig-ufo",
@@ -192,7 +197,8 @@
    "fit": "geocode",
    "url": "https://github.com/planetsig/ufo-reports",
    "via": "Medium: 20 Weird & Wonderful Datasets (2016)",
-   "note": "Not opened. The article calls it a favorite. Check the repo for columns and license before use."
+   "note": "Not opened. The article calls it a favorite. Check the repo for columns and license before use.",
+   "record": "metadata-aardvark/Datasets/planetsig-ufo.json"
   },
   {
    "id": "meteorites-vs-ufos",
@@ -205,7 +211,8 @@
    "fit": "csv-layer",
    "url": "https://github.com/lukeslp/meteorites-ufos-detection-bias",
    "via": "awesome-public-datasets (Social Sciences)",
-   "note": "Not opened. Compares meteorite fall and find reports with UFO reports."
+   "note": "Not opened. Compares meteorite fall and find reports with UFO reports.",
+   "record": "metadata-aardvark/Datasets/meteorites-vs-ufos.json"
   },
   {
    "id": "nasa-meteorites",
@@ -218,7 +225,8 @@
    "fit": "csv-layer",
    "url": "https://wierddatacollections.com/datasets/every-meteorite-landing/",
    "via": "wierddatacollections.com; source is the NASA Open Data Portal (data.nasa.gov)",
-   "note": "The linked page is a visualization. Get the table from the NASA portal."
+   "note": "The linked page is a visualization. Get the table from the NASA portal.",
+   "record": "metadata-aardvark/Datasets/nasa-meteorites.json"
   },
   {
    "id": "hurdat2",
@@ -231,7 +239,8 @@
    "fit": "csv-layer",
    "url": "https://wierddatacollections.com/datasets/atlantic-hurricanes-since-1851/",
    "via": "wierddatacollections.com",
-   "note": "Storm tracks are paths. Convert to points or GeoJSON lines before loading."
+   "note": "Storm tracks are paths. Convert to points or GeoJSON lines before loading.",
+   "record": "metadata-aardvark/Datasets/hurdat2.json"
   },
   {
    "id": "usgs-feed",
@@ -244,7 +253,8 @@
    "fit": "live",
    "url": "https://earthquake.usgs.gov/earthquakes/feed/",
    "via": "wierddatacollections.com",
-   "note": "Good candidate for a live layer. We did not test browser access from a Pages origin."
+   "note": "Good candidate for a live layer. We did not test browser access from a Pages origin.",
+   "record": "metadata-aardvark/Web services/usgs-feed.json"
   },
   {
    "id": "usgs-archive",
@@ -257,7 +267,8 @@
    "fit": "live",
    "url": "http://earthquake.usgs.gov/earthquakes/search/",
    "via": "awesome-public-datasets (Earth Science)",
-   "note": "Link uses http. Check for the https version."
+   "note": "Link uses http. Check for the https version.",
+   "record": "metadata-aardvark/Web services/usgs-archive.json"
   },
   {
    "id": "gem-historical",
@@ -270,7 +281,8 @@
    "fit": "csv-layer",
    "url": "http://www.globalquakemodel.org/what/seismic-hazard/historical-catalogue/",
    "via": "rs.io 100+ Interesting Data Sets (2014)",
-   "note": "Link is from 2014 and may have moved. Search the Global Earthquake Model site for the current page."
+   "note": "Link is from 2014 and may have moved. Search the Global Earthquake Model site for the current page.",
+   "record": "metadata-aardvark/Datasets/gem-historical.json"
   },
   {
    "id": "radiance",
@@ -283,7 +295,8 @@
    "fit": "csv-layer",
    "url": "https://archive.org/details/radiance-geojson-data-2025",
    "via": "awesome-public-datasets (Earth Science)",
-   "note": "Nighttime light dataset in GeoJSON. Check file size before loading."
+   "note": "Nighttime light dataset in GeoJSON. Check file size before loading.",
+   "record": "metadata-aardvark/Datasets/radiance.json"
   },
   {
    "id": "hotsprings",
@@ -296,7 +309,8 @@
    "fit": "csv-layer",
    "url": "https://hotspringsfind.com/hot-springs-statistics",
    "via": "awesome-public-datasets (Earth Science)",
-   "note": "Small and easy to load if the license allows."
+   "note": "Small and easy to load if the license allows.",
+   "record": "metadata-aardvark/Datasets/hotsprings.json"
   },
   {
    "id": "openwater",
@@ -309,7 +323,8 @@
    "fit": "csv-layer",
    "url": "https://openwateratlas.com/en/datasets/",
    "via": "awesome-public-datasets (Earth Science)",
-   "note": "Named locations with climate and species fields per the list entry."
+   "note": "Named locations with climate and species fields per the list entry.",
+   "record": "metadata-aardvark/Datasets/openwater.json"
   },
   {
    "id": "pleiades",
@@ -322,7 +337,8 @@
    "fit": "csv-layer",
    "url": "https://pleiades.stoa.org/",
    "via": "awesome-public-datasets (GIS)",
-   "note": "Pairs well with BTAA historic map records."
+   "note": "Pairs well with BTAA historic map records.",
+   "record": "metadata-aardvark/Datasets/pleiades.json"
   },
   {
    "id": "rumsey",
@@ -335,7 +351,8 @@
    "fit": "link-only",
    "url": "https://www.davidrumsey.com/",
    "via": "wierddatacollections.com",
-   "note": "Same subject as the BTAA scanned maps. Link out from results."
+   "note": "Same subject as the BTAA scanned maps. Link out from results.",
+   "record": "metadata-aardvark/Datasets/rumsey.json"
   },
   {
    "id": "geonames",
@@ -348,7 +365,8 @@
    "fit": "reference",
    "url": "https://www.geonames.org/",
    "via": "awesome-public-datasets (GIS)",
-   "note": "Gazetteer. Useful to geocode the UFO place names."
+   "note": "Gazetteer. Useful to geocode the UFO place names.",
+   "record": "metadata-aardvark/Datasets/geonames.json"
   },
   {
    "id": "slashyear",
@@ -361,7 +379,8 @@
    "fit": "reference",
    "url": "https://github.com/ctrl-maud/slashyear",
    "via": "awesome-public-datasets (Natural Language)",
-   "note": "Dated events. Not confirmed to have coordinates."
+   "note": "Dated events. Not confirmed to have coordinates.",
+   "record": "metadata-aardvark/Datasets/slashyear.json"
   },
   {
    "id": "spanish-flu",
@@ -374,7 +393,8 @@
    "fit": "reference",
    "url": "https://www.kaggle.com/datasets/thepodclub/spanish-flu-dataset",
    "via": "awesome-public-datasets (Healthcare)",
-   "note": "Likely country or city level. Not opened."
+   "note": "Likely country or city level. Not opened.",
+   "record": "metadata-aardvark/Datasets/spanish-flu.json"
   },
   {
    "id": "mids",
@@ -387,7 +407,8 @@
    "fit": "reference",
    "url": "http://www.correlatesofwar.org/data-sets/MIDs",
    "via": "Medium: 20 Weird & Wonderful Datasets (2016)",
-   "note": "Country-level records with action, hostility level and fatalities."
+   "note": "Country-level records with action, hostility level and fatalities.",
+   "record": "metadata-aardvark/Datasets/mids.json"
   },
   {
    "id": "plane-crash",
@@ -400,7 +421,8 @@
    "fit": "link-only",
    "url": "http://www.planecrashinfo.com/database.htm",
    "via": "awesome-public-datasets (Transportation)",
-   "note": "Website database. Check terms before scraping."
+   "note": "Website database. Check terms before scraping.",
+   "record": "metadata-aardvark/Datasets/plane-crash.json"
   },
   {
    "id": "plane-crash-hf",
@@ -413,7 +435,8 @@
    "fit": "geocode",
    "url": "https://huggingface.co/datasets/MauroPello/planecrashdata",
    "via": "awesome-public-datasets (Transportation)",
-   "note": "Not opened. Check for coordinates."
+   "note": "Not opened. Check for coordinates.",
+   "record": "metadata-aardvark/Datasets/plane-crash-hf.json"
   },
   {
    "id": "wildlife-strikes",
@@ -426,7 +449,8 @@
    "fit": "reference",
    "url": "https://doi.org/10.5281/zenodo.21347859",
    "via": "awesome-public-datasets (Transportation)",
-   "note": "Aggregated version. Birds versus planes."
+   "note": "Aggregated version. Birds versus planes.",
+   "record": "metadata-aardvark/Datasets/wildlife-strikes.json"
   },
   {
    "id": "machine-record",
@@ -439,7 +463,8 @@
    "fit": "geocode",
    "url": "https://github.com/vzolot/machine-record-data",
    "via": "awesome-public-datasets (Transportation)",
-   "note": "Not opened."
+   "note": "Not opened.",
+   "record": "metadata-aardvark/Datasets/machine-record.json"
   },
   {
    "id": "fra-safety",
@@ -452,7 +477,8 @@
    "fit": "csv-layer",
    "url": "http://safetydata.fra.dot.gov/officeofsafety/default.aspx",
    "via": "rs.io 100+ Interesting Data Sets (2014)",
-   "note": "2014 link may have moved. The article suggests mapping crossing incidents."
+   "note": "2014 link may have moved. The article suggests mapping crossing incidents.",
+   "record": "metadata-aardvark/Datasets/fra-safety.json"
   },
   {
    "id": "trains",
@@ -465,7 +491,8 @@
    "fit": "csv-layer",
    "url": "https://github.com/Flightmussy/trainrouter-atlas",
    "via": "awesome-public-datasets (Transportation)",
-   "note": "Not opened."
+   "note": "Not opened.",
+   "record": "metadata-aardvark/Datasets/trains.json"
   },
   {
    "id": "ourairports",
@@ -478,7 +505,8 @@
    "fit": "csv-layer",
    "url": "https://ourairports.com/data/",
    "via": "wierddatacollections.com",
-   "note": "Hand-maintained."
+   "note": "Hand-maintained.",
+   "record": "metadata-aardvark/Datasets/ourairports.json"
   },
   {
    "id": "openflights",
@@ -491,7 +519,8 @@
    "fit": "csv-layer",
    "url": "https://openflights.org/data.php",
    "via": "awesome-public-datasets (Transportation)",
-   "note": "Routes can draw as lines."
+   "note": "Routes can draw as lines.",
+   "record": "metadata-aardvark/Datasets/openflights.json"
   },
   {
    "id": "flock",
@@ -504,7 +533,8 @@
    "fit": "link-only",
    "url": "https://flocklocations.com/press",
    "via": "awesome-public-datasets (GIS)",
-   "note": "Crowdsourced locations of surveillance equipment. Review the source terms and any privacy concerns before reuse."
+   "note": "Crowdsourced locations of surveillance equipment. Review the source terms and any privacy concerns before reuse.",
+   "record": "metadata-aardvark/Datasets/flock.json"
   },
   {
    "id": "afrpoweros",
@@ -517,7 +547,8 @@
    "fit": "csv-layer",
    "url": "https://github.com/kawacukennedy/afrpoweros",
    "via": "awesome-public-datasets (Energy)",
-   "note": "Not opened."
+   "note": "Not opened.",
+   "record": "metadata-aardvark/Datasets/afrpoweros.json"
   },
   {
    "id": "oga",
@@ -530,7 +561,8 @@
    "fit": "live",
    "url": "https://data-ogauthority.opendata.arcgis.com/",
    "via": "awesome-public-datasets (Earth Science)",
-   "note": "ArcGIS Hub site. Most ArcGIS services can be read from a browser."
+   "note": "ArcGIS Hub site. Most ArcGIS services can be read from a browser.",
+   "record": "metadata-aardvark/Web services/oga.json"
   },
   {
    "id": "gbif",
@@ -543,7 +575,8 @@
    "fit": "live",
    "url": "https://www.gbif.org/",
    "via": "wierddatacollections.com",
-   "note": "Has a public API. We did not test browser access. Good for a \"sightings of frogs\" style layer."
+   "note": "Has a public API. We did not test browser access. Good for a \"sightings of frogs\" style layer.",
+   "record": "metadata-aardvark/Web services/gbif.json"
   },
   {
    "id": "exoplanets",
@@ -556,7 +589,8 @@
    "fit": "reference",
    "url": "http://exoplanetarchive.ipac.caltech.edu/",
    "via": "awesome-public-datasets (Physics); rs.io",
-   "note": "Sky positions, not map coordinates. Listed by two of your sources."
+   "note": "Sky positions, not map coordinates. Listed by two of your sources.",
+   "record": "metadata-aardvark/Datasets/exoplanets.json"
   },
   {
    "id": "water-hardness",
@@ -569,7 +603,8 @@
    "fit": "geocode",
    "url": "https://www.tapwaterdata.com/water-hardness",
    "via": "awesome-public-datasets (Earth Science)",
-   "note": "City names only. Join to GeoNames for coordinates."
+   "note": "City names only. Join to GeoNames for coordinates.",
+   "record": "metadata-aardvark/Datasets/water-hardness.json"
   },
   {
    "id": "gdelt",
@@ -582,7 +617,8 @@
    "fit": "live",
    "url": "https://www.gdeltproject.org/",
    "via": "wierddatacollections.com",
-   "note": "Large. Use the query services rather than raw files."
+   "note": "Large. Use the query services rather than raw files.",
+   "record": "metadata-aardvark/Datasets/gdelt.json"
   }
  ]
 }

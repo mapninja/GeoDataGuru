@@ -1,0 +1,28 @@
+{
+  "id": "slashyear",
+  "dct_title_s": "SlashYear sourced historical events",
+  "gbl_resourceClass_sm": [
+    "Datasets"
+  ],
+  "dct_accessRights_s": "Public",
+  "gbl_mdVersion_s": "Aardvark",
+  "schema_provider_s": "Weird shelf",
+  "dct_references_s": "{\"http://schema.org/url\":\"https://github.com/ctrl-maud/slashyear\"}",
+  "dct_description_sm": [
+    "Dated events. Not confirmed to have coordinates."
+  ],
+  "dcat_keyword_sm": [
+    "Lost and historic"
+  ],
+  "dct_rights_sm": [
+    "Not stated"
+  ],
+  "gbl_mdModified_dt": "2026-10-30T00:00:00Z",
+  "gdg_theme_s": "Lost and historic",
+  "gdg_spatial_s": "region",
+  "gdg_fit_s": "reference",
+  "gdg_checked_s": "listed only",
+  "gdg_size_s": "Events from 3000 BCE",
+  "gdg_via_s": "awesome-public-datasets (Natural Language)",
+  "gdg_order_i": 19
+}

@@ -27,6 +27,7 @@
   // ---------- 1. Settings ----------
   const API_BASE = 'https://geo.btaa.org/api/v1'; // the production API
   const SITE_BASE = 'https://geo.btaa.org';       // full record pages live here
+  const REPO_EDIT_BASE = 'https://github.com/mapninja/GeoDataGuru/edit/main/'; // GitHub web editor for a repo file
   const PER_PAGE = 12;                            // results per page
   const MAX_PAGE = 100;                           // stop paging far into the result set
 
@@ -37,7 +38,7 @@
   const BUDGET_WINDOW_MS = 60 * 1000;
   const CACHE_TTL_MS = 10 * 60 * 1000;            // reuse answers for 10 minutes
 
-  // The two data files. To add datasets, edit these files (see README.md).
+  // The two data files. data/weird-catalog.json is built from metadata-aardvark/ (see README.md).
   const DATA_OGM = 'data/ogm-subset.json';
   const DATA_WEIRD = 'data/weird-catalog.json';
 
@@ -793,7 +794,9 @@
       ),
       el('p', { class: 'desc' }, 'License: ' + (d.license || 'unknown')),
       el('p', { class: 'desc' }, d.note || ''),
-      d.via ? el('p', { class: 'small' }, 'Found via: ' + d.via) : null
+      d.via ? el('p', { class: 'small' }, 'Found via: ' + d.via) : null,
+      d.record ? el('p', { class: 'small' },
+        el('a', { href: REPO_EDIT_BASE + d.record, target: '_blank', rel: 'noopener' }, 'Edit this record')) : null
     );
     // Entries with sub-layers get a collapsible table.
     if (Array.isArray(d.layers) && d.layers.length) {
@@ -823,7 +826,7 @@
     for (const d of shown) list.append(el('li', { class: 'card shelfcard nothumb' }, weirdBody(d)));
   }
 
-  // "Add a dataset" helper. Builds a JSON entry you paste into data/weird-catalog.json.
+  // "Add a dataset" helper. Builds an Aardvark record (see aardvark.js) you save under metadata-aardvark/.
   // Nothing is saved or sent anywhere: the page only prints text for you to copy.
   const slug = (text) => fold(text).replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 60);
 
@@ -917,13 +920,14 @@
     event.preventDefault();
     const entry = makeCatalogEntry(event.target);
     $('addOut').value = entry
-      ? JSON.stringify(entry, null, 2) + ','
+      ? JSON.stringify(GDGAardvark.toAardvark(entry, new Date().toISOString().replace(/\.\d+Z$/, 'Z')), null, 2)
       : 'Enter a title and a web address that starts with http:// or https://.';
+    $('addPath').textContent = entry ? 'Save as ' + GDGAardvark.pathFor(entry) : '';
     $('addCopy').hidden = !entry;
   });
   $('addCopy').addEventListener('click', () => {
     const text = $('addOut').value;
-    if (navigator.clipboard) navigator.clipboard.writeText(text).then(() => setStatus('Copied. Paste it into data/weird-catalog.json.'), () => $('addOut').select());
+    if (navigator.clipboard) navigator.clipboard.writeText(text).then(() => setStatus('Copied. Save it as the file named above.'), () => $('addOut').select());
     else $('addOut').select();
   });
   $('nearBtn').addEventListener('click', searchNearCenter);

@@ -1,0 +1,28 @@
+{
+  "id": "planetsig-ufo",
+  "dct_title_s": "UFO reports, 80,000+ (planetsig)",
+  "gbl_resourceClass_sm": [
+    "Datasets"
+  ],
+  "dct_accessRights_s": "Public",
+  "gbl_mdVersion_s": "Aardvark",
+  "schema_provider_s": "Weird shelf",
+  "dct_references_s": "{\"http://schema.org/url\":\"https://github.com/planetsig/ufo-reports\"}",
+  "dct_description_sm": [
+    "Not opened. The article calls it a favorite. Check the repo for columns and license before use."
+  ],
+  "dcat_keyword_sm": [
+    "Paranormal"
+  ],
+  "dct_rights_sm": [
+    "Not stated"
+  ],
+  "gbl_mdModified_dt": "2026-10-30T00:00:00Z",
+  "gdg_theme_s": "Paranormal",
+  "gdg_spatial_s": "geocode",
+  "gdg_fit_s": "geocode",
+  "gdg_checked_s": "listed only",
+  "gdg_size_s": "80,000+ reports (per article)",
+  "gdg_via_s": "Medium: 20 Weird & Wonderful Datasets (2016)",
+  "gdg_order_i": 6
+}
